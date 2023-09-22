@@ -1,25 +1,25 @@
-# Welcome!
+# 欢迎！
 
-Welcome to The Qt 6 Book - A book about QML. This text will guide you through QML, Qt's language for creating dynamic user interfaces. 
+欢迎来到 Qt 6 书籍 - 一本关于 QML 的书籍。本文会带你漫步 QML，这是 Qt 创建动态用户界面的语言。
 
-I believe that the ability to build declarative, reactive, hardware accelerated user interfaces executing at native performance across *all* major platforms (and some not so major) is a game changer. When starting with Qt, it was almost as if I had my secret weapon to building software quickly. QML takes that to the next level.
+我相信能够在*所有*主流平台（包括一些不那么主流的）构建声明式，响应式，支持硬件加速的拥有原生性能的用户界面的能力足以改变游戏规则。当开始使用 Qt 时，我几乎拥有了快速构建软件的秘密武器。QML 将其提升到了一个新的层级。
 
-How is this book different from the Qt documentation? I hear you ask. The intention is to build a complement. This book is meant as a book that you can read from front to back where each chapter builds on what you've previously learned. But it can also be used as a way for the experienced reader to get oriented in a new topic. Each chapter focuses on a specific topic and introduces the concepts from Qt and QML. However, the Qt documentation will always provide the full picture and is a great reference to look up the details about all elements, properties, enumerations, and more.
+有人会文，本书与 Qt 文档有何不同？便于通读。本书的每个章节都基于之前介绍过的内容，你能流畅地从头读到尾。而且，本书也可帮助经验丰富的开发者学习新知识。本书的每个章节都专注于介绍 Qt 和 QML 的一个特定概念。但是 Qt 文档总是提供完整资料，更适合作为查找所有元素，属性，枚举等的参考文档。
 
-I wish you a pleasant read!
+祝你阅读愉快！
 
 *Johan Thelin*
 
-## Structure
+## 结构
 
-The book can be said to be split into three parts. The split is not clear cut enough to motivate a strict division of chapters, but more of a guideline that we've tried to follow when writing it. 
+本书可被分为三个部分。虽然章节并没有被严格的分为三个部分，但是我们在编写时基本遵循了此规则。
 
-The first few chapters, let's say until somewhere around chapter 5 - 7 can be considered an introduction. If you want to learn QML, you should make sure to read these chapters. 
+开头的几个章节到第 5 - 7 章的部分位置为基础介绍。如果你想学习 QML，你需要阅读这些章节。
 
-The following chapters, 6-14, can be seen as fairly separate chapters introducing independent topics, even though the models from chapter 7 are used in many more places. Feel free to dive into these in the order that you like and learn about the topics that you are curious about.
+后续的 6 - 14 章可被视为介绍独立主体的章节，即便第 7 章中的模型在很多地方被使用。请按照你喜欢的顺序阅读这些章节，阅读你感兴趣的内容。
 
-The remainder of the book focuses on more advanced topics such as details of JavaScript, mixing C++ and QML, and the Qt for Python bindings and QML. These are important topics and I really want you to read them. To build a full application with QML you need to understand these topics, but their main focus is not on QML.
+本书的剩余部分关注更多的进阶主题，JavaScript的详情，混用 C++ 和 QML，Qt 的 Python 绑定和 QML。这些主题十分重要，所以我非常希望你们阅读它们。要构建一个完整的应用，你需要理解这些主题，虽然它们的焦点不是 QML。
 
-## Never Ending Work in Progress
+## 永不停歇的工作正在进行中
 
-The Qt 6 Book is a never ending work in progress. We welcome contributors and are planning to open up our infrastructure to let you contribute both by reporting issues and by contributing fixes and new content. The end goal is to present you with a printed book when the material has reached a maturity level that we are happy with, but we want to share this with you already now and to learn from your feedback what to improve, and what additional content to add.
+Qt 6 书籍的工作永不停止，一直进行中。我们（正在计划开放我们的基础设施）欢迎贡献者，允许你报告 issue 和贡献补丁和新内容。终级目标是在其达到我们满意的程度时候，向你展示一份可出版的书籍。但是我们现在就想与你分享此书，这样我们能提早获得反馈，包括什么可以被优化，什么新内容需要添加。
