@@ -1,6 +1,6 @@
-# Acknowledgements
+# 鸣谢
 
-This book would not have been possible to create without the kind sponsorship from **The Qt Company**. It is a privilege to be able to work on a project such as this, and their help has been invaluable. I would like to give a special mention to (alphabetically):
+没有来自 **Qt 公司** 的赞助，就不会有本书。能够从事这样的项目是一种荣幸，他们的帮助是无价的。特别鸣谢（按字母排序）：
 
 - empenzes 
 - Fabian K
@@ -13,9 +13,9 @@ This book would not have been possible to create without the kind sponsorship fr
 - Ulf Hermann
 - Vladimir Minenko
 
-## Contributors
+## 贡献者
 
-This book was made possible by the great community contributors. I would like to thank them all (alphabetically):
+伟大的社区贡献者促成了本书。我期望在此感谢他们（按字母排序）：
 
 - alexshen
 - arky
@@ -33,9 +33,9 @@ This book was made possible by the great community contributors. I would like to
 - VideoCarp
 - wangchunlin5013
 
-## History
+## 历史
 
-This book is based on [The QML Book](https://qmlbook.github.io/), originally written for Qt 5. I would like to thank all contributors to that book (alphabetically):
+本书基于 [The QML Book](https://qmlbook.github.io/)，最初是为 Qt 5 所写。我期望感谢这本书的贡献者（按字母排序）：
 
 - aamirglb
 - alexeRadu
@@ -69,4 +69,8 @@ This book is based on [The QML Book](https://qmlbook.github.io/), originally wri
 - trolley
 - 29jm
 
-I would also like to give a special mention to Pelagicore, The Qt Company and Felgo for help the development of The QML Book by sponsoring our work and being generally awesome when it comes to feedback and support.
+特别感谢 Pelagicore，Qt 公司和 Felgo 在编写 QML 书籍过程中提供的赞助，出色的反馈和支持。
+
+## 翻译
+
+本书中文版由 dogifyc 出于方便自我学习的目的，由官方仓库于2023年9月22日克隆获得，翻译仓库存于 https://github.com/dogifyc/qt6book。
