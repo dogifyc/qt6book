@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'The Qt 6 Book',
-  description: "A book about QML",  
+  title: 'Qt 6 书籍',
+  description: "一本关于 QML 的书",  
   plugins: [
     'vuepress-plugin-mermaidjs',
     [ '@e8johan/vuepress-plugin-pdf-export', {
@@ -418,7 +418,7 @@ function ch03Sidebar() {
 
 function ch02Sidebar() {
   return {
-    title: "Getting Started",
+    title: "起步",
     path: '/ch02-start/quick-start',
     collapsable: false,
     children: [
@@ -433,7 +433,7 @@ function ch02Sidebar() {
 
 function ch01Sidebar() {
   return { 
-    title: "Meet Qt",
+    title: "遇见 Qt",
     path: '/ch01-meetqt/meet-qt',
     collapsable: false,
     children: [
@@ -446,7 +446,7 @@ function ch01Sidebar() {
 
 function prefaceSidebar() {
   return { 
-    title: "Preface",
+    title: "前言",
     path: '/preface/preface',
     collapsable: false,
     children: [

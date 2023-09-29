@@ -1,12 +1,12 @@
-# Qt 6 Introduction
+# Qt 6 简介
 
 ## Qt Quick
 
-Qt Quick is the umbrella term for the user interface technology used in Qt 6. It was introduced in Qt 4 and now expanded for Qt 6. Qt Quick itself is a collection of several technologies:
+Qt Quick 是 Qt 6 中使用的用户界面技术的总称。它在 Qt 4 引入，壮大于 Qt 6。Qt 6 是好几项技术的集合：
 
-* QML - Markup language for user interfaces
-* JavaScript - The dynamic scripting language
-* Qt C++ - The highly portable enhanced c++ library
+* QML - 用于用户界面的标记语言
+* JavaScript - 动态脚本语言
+* Qt C++ - 极致优化且轻量的 c++ 库
 
 ![](./assets/qt6_overview.png)
 

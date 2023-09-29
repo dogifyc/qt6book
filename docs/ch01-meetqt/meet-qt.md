@@ -1,36 +1,36 @@
-# Qt and Qt Quick
+# Qt 和 Qt Quick
 
-This book provides you with a walk through of the different aspects of application development using the new Qt 6. It focuses on the Qt Quick technology, but also provides necessary information about writing C++ back-ends and extensions for Qt Quick.
+本书将带你从不同视角了解 Qt 6 应用编程。本书专注于 Qt Quick 技术，不过也介绍了为 Qt Quick 编写 C++ 后端代码和扩展必要的知识。
 
-This chapter shall provide a high-level overview of Qt 6. It shows the different application models available for developers, as well as a showcase application, as a sneak preview of things to come. Additionally, the chapter aims to provide a wide overview of the Qt content and how to get in touch with the makers of Qt the Qt Company.
+本章将会简略概述 Qt 6，包括开发者可用的几个不同的应用模型和一个先睹为快的展示应用。另外，本章意在宽泛地介绍 Qt，并偷偷告诉你如何联系 Qt 公司的开发者。
 
 
-## Qt 6 Focus
+## Qt 6 变化
 
-Qt 5 was released many years ago and introduced a new declarative way of writing stunning user interfaces. Since then a lot has changed in the world around us.
+Qt 5 是好多年前发布的，介绍了一种申明式的编写令人惊叹的用户界面的技术。不过到现在为止，与之关联的很多东西都已经有了不小的变化。
 
-Qt 6 will be a continuation of what has been done with Qt 5 and should not be disruptive to the majority of users. What makes Qt valuable to its users?
+Qt 6 将会是 Qt 5 的续作，且不会对主体用户引入破坏性修改。是什么构成了 Qt 对其用户的价值？
 
-* Its cross-platform nature
-* Its scalability
-* World class APIs and documentation
-* Maintainability, stability and compatibility
-* A large developer ecosystem
+* 跨平台特性
+* 扩展性
+* 世界一流的 API 和文档
+* 易维护，稳定性和兼容
+* 庞大的开发生态
 
-Qt 6 evolves the Qt product to new markets while keeping close to the users values.
+Qt 6 在贴近用户价值观的同时，将 Qt 产品引入了新市场。
 
-The desktop market is the root of the Qt offering. It is where most users get the first contact with Qt and it forms the base for the Qt tools and its success.
+桌面市场是 Qt 的根。大部分用户都是在桌面端初遇 Qt，桌面端是 Qt 产品的基石，它构成了 Qt 工具的基础和其成功。
 
-It is expected that Qt 6 will grow most in the embedded and connected devices market from high-end near desktop performing devices to low-end devices like microcontrollers. Touch screens will come to an exponential increasing number to these devices. Many of these devices will have relatively simple functionality but require a polished and smooth user interface.
+预计 Qt 6 将在嵌入式和互连设备市场中增长最快，从高端近桌面性能设备到微控制器等低端设备。这些设备的触摸屏数量将会指数级增长。这些设备很多只有简单的功能，但是却有漂亮且流畅的用户界面。
 
-At the other end of the spectrum there is a demand for more complex and 2D/3D integrated user interfaces. The 3D content with 2D elements based interfaces will be common, as will be the use of augmented and virtual reality.
+需求光谱的另一面却要求集成更复杂的 2D/3D 用户界面。在虚拟现实(VR)和增强现实(AR)中，基于 2D 元素的 3D 用户界面将会更加常见。
 
-The growth of connected devices and the higher demand for smooth user interfaces require a simpler workflow to create applications and devices. Integrating UX designers into the development workflow is one of the goals of the Qt 6 series.
+互连设备的持续增长和构建流畅用户界面的迫切需求，两者都要求一个简单工作流程，用于构建应用和设备。将 UX 设计师引入开发工作流是 Qt 6 系列的其中一个目标。
 
-## Qt 6 brings us:
+## Qt 6 带来了：
 
-* Next generation QML
-* Next generation graphics
-* Unified and consistent tooling
-* Enhanced Qts C++ APIs
-* Component Marketplace
+* 下一代的 QML
+* 下一代的图形处理
+* 统一且一致的工具
+* 更好的 Qt C++ API
+* 组件市场

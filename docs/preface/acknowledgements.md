@@ -73,4 +73,4 @@
 
 ## 翻译
 
-本书中文版由 dogifyc 出于方便自我学习的目的，由官方仓库于2023年9月22日克隆获得，翻译仓库存于 https://github.com/dogifyc/qt6book。
+本书中文版由 dogifyc 出于方便自我学习的目的，由官方仓库于2023年9月22日克隆获得，翻译仓库存于 https://github.com/dogifyc/qt6book。因为本人水平有限，本文翻译难免出现错误或纰漏，望您不吝指教，或者提交PR。
