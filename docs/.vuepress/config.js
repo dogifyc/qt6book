@@ -1,6 +1,7 @@
 module.exports = {
   title: 'Qt 6 书籍',
-  description: "一本关于 QML 的书",  
+  description: "一本关于 QML 的书",
+  base: '/qt6book/',
   plugins: [
     'vuepress-plugin-mermaidjs',
     [ '@e8johan/vuepress-plugin-pdf-export', {
