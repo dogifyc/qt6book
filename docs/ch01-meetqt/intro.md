@@ -10,17 +10,17 @@ Qt Quick 是 Qt 6 中使用的用户界面技术的总称。它在 Qt 4 引入�
 
 ![](./assets/qt6_overview.png)
 
-Similar to HTML, QML is a markup language. It is composed of tags, called types in Qt Quick, that are enclosed in curly brackets: `Item {}`. It was designed from the ground up for the creation of user interfaces, speed and easier reading for developers. The user interface can be enhanced further using JavaScript code. Qt Quick is easily extendable with your own native functionality using Qt C++. In short, the declarative UI is called the front-end and the native parts are called the back-end. This allows you to separate the computing intensive and native operation of your application from the user interface part.
+与 HTML 类似，QML 是一种标记语言。QML 由标签组成（在 Qt Quick 中被称为 Qt Quick），包含了一对大括号，形如 `Item {}`。它是重新设计的，旨在让开发者快速创建更易读的用户界面。用户界面可通过 JavaScript 代码进一步增强。Qt Quick 方便地能通过 Qt C++ 编写的原生功能进行扩展。简而言之，申明式 UI 被称为前端，原生代码被称为后端。这使得你将密集的计算和原生操作从用户界面中分离出来。
 
-In a typical project, the front-end is developed in QML/JavaScript. The back-end code, which interfaces with the system and does the heavy lifting, is developed using Qt C++. This allows a natural split between the more design-oriented developers and the functional developers. Typically, the back-end is tested using Qt Test, the Qt unit testing framework, and exported for the front-end developers to use.
+在典型项目中，前端由 QML/JavaScript 开发。后端代码由 Qt C++ 开发，负责与系统交互和一些重活。这很自然的划分出了设计工程师和功能开发工程师。一般来说，后端代码由 Qt Test（Qt 单元测试框架）进行测试后，导出给前端工程使用。
 
-## Digesting a User Interface
+## 认识用户界面
 
-Let’s create a simple user interface using Qt Quick, which showcases some aspects of the QML language. In the end, we will have a paper windmill with rotating blades.
+让我们利用 Qt Quick 创建一个简单的用户界面，它将展示 QML 语言的好几个知识点。最后的成品是一个有几个扇叶的纸风车。
 
 ![](./assets/showcase.png)
 
-We start with an empty document called `main.qml`. All our QML files will have the suffix `.qml`. As a markup language (like HTML), a QML document needs to have one and only one root type. In our case, this is the `Image` type with a width and height based on the background image geometry:
+首先新建一个空的 `main.qml` 文件。所有的 QML 文件都有后缀 `.qml`。作为一种标记语言（类似 HTML），一个 QML 文档有且仅有一个根节点。在本例中，根节点是一个 `Image` 类型的，它的宽高基于指定的背景图：
 
 ```qml
 import QtQuick
@@ -31,28 +31,28 @@ Image {
 }
 ```
 
-As QML doesn’t restrict the choice of type for the root type, we use an `Image` type with the source property set to our background image as the root.
+由于 QML 并未限制根节点的类型，本例中我们使用 `Image` 类型，它的 source 属性被设置为指定背景图。
 
 ![](./assets/background.png)
 
-::: tip
-Each type has properties. For example, an image has the properties `width` and `height`, each holding a count of pixels. It also has other properties, such as `source`. Since the size of the image type is automatically derived from the image size, we don’t need to set the `width` and `height` properties ourselves.
+::: tip 提示
+每种类型都有其属性。例如，图片有属性 `width` 和 `height`，均存储着像素值。它也有其它属性，例如 `source`。由于图片类型自动从图片中继承了尺寸，我们无需再手动设置 `width` 和 `height` 属性。
 :::
 
-The most standard types are located in the `QtQuick` module, which is made available by the import statement at the start of the `.qml` file.
+大部分的标准类型位于 `QtQuick` 模块中，可在 `.qml` 文件的开头通过 import 语句导入。
 
-The `id` is a special and optional property that contains an identifier that can be used to reference its associated type elsewhere in the document. Important: An `id` property cannot be changed after it has been set, and it cannot be set during runtime. Using `root` as the id for the root-type is a convention used in this book to make referencing the top-most type predictable in larger QML documents.
+`id` 是一个特殊的可选属性，它包含了一个标识符，可在文档的其它位置引用其关联的类型。重点： `id` 属性设置后就无法修改，且无法再运行时设置。本书约定以 `root` 作为最顶层节点的 id，便于在后续更大的 QML 文档中找到根节点。
 
-The foreground elements, representing the pole and the pinwheel in the user interface, are included as separate images.
+用户界面中的前置元素，一根杆和风车是两张独立的图片。
 
 
 ![](./assets/pole.png)
 
 ![](./assets/pinwheel.png)
 
-We want to place the pole horizontally in the center of the background, but offset vertically towards the bottom. And we want to place the pinwheel in the middle of the background.
+我们想将这根杆相对于背景图水平居中，底部对齐。而风车则置于背景图的正中心。
 
-Although this beginners example only uses image types, as we progress you will create more sophisticated user interfaces that are composed of many different types.
+虽然我们的入门示例只使用了图片类型，后面我们会慢慢的引导你创建由更多不同类型组成的复杂界面。
 
 ```qml
 Image {
@@ -74,21 +74,21 @@ Image {
 }
 ```
 
-To place the pinwheel in the middle, we use a complex property called `anchor`. Anchoring allows you to specify geometric relations between parent and sibling objects. For example, place me in the center of another type ( `anchors.centerIn: parent` ). There are left, right, top, bottom, centerIn, fill, verticalCenter and horizontalCenter relations on both ends. Naturally, when two or more anchors are used together, they should complement each other: it wouldn’t make sense, for instance, to anchor a type’s left side to the top of another type.
+将风车置于正中，我们需要用到名为 `anchor` 的复杂属性。描点允许你指定父元素和其子元素之间的几何关系。例如，`anchors.centerIn: parent` 会将我置于父元素的中心。左对右，上对下，居中对填充，垂直居中对水平居中。一般来说，多个描点同时使用时，他们必须互相兼容，例如，将一个元素的左侧和另一个元素的顶部对齐将不会产生任何作用。
 
-For the pinwheel, the anchoring only requires one simple anchor.
+风车只需一个简单的描点。
 
-::: tip
-Sometimes you will want to make small adjustments, for example, to nudge a type slightly off-center. This can be done with `anchors.horizontalCenterOffset` or with `anchors.verticalCenterOffset`. Similar adjustment properties are also available for all the other anchors. Refer to the documentation for a full list of anchors properties.
+::: tip 提示
+有时，你想做些微调，例如，将其稍微偏移中心点。这可通过 `anchors.horizontalCenterOffset` 或 `anchors.verticalCenterOffset` 完成。类似的调整属性对其它的标点也是适用的，可通过文档查看完整的描点属性。
 :::
 
-::: tip    
-Placing an image as a child type of our root type (the `Image`) illustrates an important concept of a declarative language. You describe the visual appearance of the user interface in the order of layers and grouping, where the topmost layer (our background image) is drawn first and the child layers are drawn on top of it in the local coordinate system of the containing type.
+::: tip 提示
+将子类型图片置于根节点（本例中是 `Image`）下说明了申明式语言的一个重要原则。你所申明的可视外观的层级和分组，会先绘制最顶层（我们的背景图）的层级，然后基于其坐标系，在其上继续绘制子层级。
 :::
 
-To make the showcase a bit more interesting, let’s make the scene interactive. The idea is to rotate the wheel when the user presses the mouse somewhere in the scene.
+为了让案例变得更有趣，让我们赋予其一点交互性。当用鼠标点击画面的任一点时旋转风车。
 
-We use the `MouseArea` type and make it cover the entire area of our root type.
+我们使用 `MouseArea` 类型包裹根节点。
 
 ```qml
 Image {
@@ -102,19 +102,19 @@ Image {
 }
 ```
 
-The mouse area emits signals when the user clicks inside the area it covers. You can connect to this signal by overriding the `onClicked` function. When a signal is connected, it means that the function (or functions) it corresponds to are called whenever the signal is emitted. In this case, we say that when there’s a mouse click in the mouse area, the type whose `id` is `wheel` (i.e., the pinwheel image) should rotate by +90 degrees.
+当用户点击 MouseArea 覆盖的区域时，他会发送一个信号。你可以通过重写 `onClicked` 函数来连接此信号。当信号被连接后，发送信号就会调用关联的函数。在本例中，当点击事件触发时，`id` 为 `wheel` 的元素（本例中为风车图片）会顺时针旋转 90 度。
 
-::: tip
-This technique works for every signal, with the naming convention being `on` + `SignalName` in title case. Also, all properties emit a signal when their value changes. For these signals, the naming convention is:
+::: tip 提示
+这项技术对每种信号都有效，它的命名规则是 `on` + `SignalName`。同时，所有的属性值变更时，也会发送信号。这些信号的命名规则是：
 :::
 
 ```js
     `on${property}Changed`
 ```
 
-For example, if a `width` property is changed, you can observe it with `onWidthChanged: print(width)`.
+例如，若 `width` 属性值发生变化，你可以通过 `onWidthChanged: print(width)` 观察。
 
-The wheel will now rotate whenever the user clicks, but the rotation takes place in one jump, rather than a fluid movement over time. We can achieve smooth movement using animation. An animation defines how a property change occurs over a period of time. To enable this, we use the `Animation` type’s property called `Behavior`. The `Behavior` specifies an animation for a defined property for every change applied to that property. In other words, whenever the property changes, the animation is run. This is only one of many ways of doing animation in QML.
+现在这个风车会在用户点击时旋转了，但旋转动作是立刻完成的，而不是在一段时间内慢慢转动。可以通过动画来实现平滑转动。动画定义了属性值如何在一段时间内转变成另一个值。要启用动画，需要使用 `Animation` 类型的 `Behavior` 属性。`Behavior` 为属性值的修改定义了一套变化过程。换而言之，无论何时属性值变化，动画就会运行。这只是在 QML 中使用动画的一种方式。
 
 ```qml
 Image {
@@ -130,13 +130,13 @@ Image {
 }
 ```
 
-Now, whenever the wheel’s rotation property changes, it will be animated using a `NumberAnimation` with a duration of 250 ms. So each 90-degree turn will take 250 ms, producing a nice smooth turn.
+现在，无论何时旋转角度发生变化，它都会通过 `NumberAnimation` 触发一个 250 毫秒的动画。每次的 90 度旋转将耗时 250 毫秒，这将使得旋转变得流畅。
 
 ![](./assets/scene2.png)
 
-::: tip
-You will not actually see the wheel blurred. This is just to indicate the rotation. (A blurred wheel is in the assets folder, in case you’d like to experiment with it.)
+::: tip 提示
+你不会真的看到这个风车变得转的模糊。因为它的旋转只修改了角度。（assets 目录中有一个模糊的风车图片，你可以换它试试。）
 :::
 
-Now the wheel looks much better and behaves nicely, as well as providing a very brief insight into the basics of how Qt Quick programming works.
+现在这个风车看起来好多了，且转的更舒心了。我们在也在这个过程中简单的了解了 Qt Quick 编程是如何工作的。
 
