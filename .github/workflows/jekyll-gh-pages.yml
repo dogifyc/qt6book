@@ -17,13 +17,10 @@ jobs:
           # fetch all commits to get last updated time or other git log info
           fetch-depth: 0
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          # choose pnpm version to use
-          version: 8
-          # install deps with pnpm
-          run_install: true
+      - name: action-yarn
+        # You may pin to the exact commit or the version.
+        # uses: comchangs/action-yarn@e4a1f4800849aa2e73dbc77d872a3c011cdc28d5
+        uses: comchangs/action-yarn@v0.1-beta
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -31,11 +28,11 @@ jobs:
           # choose node.js version to use
           node-version: 18
           # cache deps for pnpm
-          cache: pnpm
+          cache: yarn
 
       # run build script
       - name: Build VuePress site
-        run: pnpm docs:build
+        run: yarn docs:build
 
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages
