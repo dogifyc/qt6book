@@ -1,14 +1,14 @@
-# Installing Qt 6 SDK
+# 安装 Qt 6 SDK
 
-The Qt SDK includes the tools you need to build desktop or embedded applications. You can grab the latest version from the [Qt Company](https://qt.io)’s homepage. There is an offline and online installer. The author personally prefers the online installer package as it allows you to install and update multiple Qt releases. This is the recommended way to start. The SDK itself has a maintenance tool, which allows you to update the SDK to the latest version.
+Qt SDK 包括构建桌面和嵌入式应用需要的工具。可以从[Qt 公司](https://qt.io)的主页下载最新版本。页面上离线和在线安装器。个人开发者更偏向使用在线安装器，因为它能安装和更新多个 Qt 发行版。这也是推荐的开始方式。SDK 自带一个维护工具，它允许你将 SDK 更新至最新版本。
 
-The Qt SDK is easy to install and comes with its own IDE for rapid development called *Qt Creator*. The IDE is a highly productive environment for Qt coding and recommended to all readers. Many developers use Qt from the command line, however, and you are free to use the code editor of your choice.
+Qt SDK 便于安装，且自带了一个用于快速开发的 IDE，名为 *Qt Creator*。这是一个高效的 Qt 开发环境，推荐给所有人。不过，很多开发者也在命令行环境使用 Qt，用不用编辑器取决于你。
 
-When installing the SDK, you should select the default option and ensure that at least Qt 6.2 is enabled. Then you’re ready to go.
-## Update Qt
+在安装 SDK 时，你应该保持默认选项，确保至少启用了 Qt 6.2。准备出发。
+## 更新 Qt
 
-The Qt SDK comes with an own maintenance tool located under the `${install_dir}`. It allows to add and/or update Qt SDK components.
+Qt SDK 在 `${install_dir}` 目录下自带了一个维护工具。它允许你添加或更新 Qt SDK 组件。
 
-## Build from Source
+## 从源码构建
 
-To build Qt from source you can follow the guide from the [Qt Wiki](https://wiki.qt.io/Building_Qt_6_from_Git).
+要从源码构建 Qt 请参考 [Qt 百科](https://wiki.qt.io/Building_Qt_6_from_Git)。
