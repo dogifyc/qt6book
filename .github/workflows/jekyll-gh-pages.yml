@@ -18,8 +18,8 @@ jobs:
     - name: Build and Deploy
       uses: jenkey2011/vuepress-deploy@master
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TARGET_REPO: dogifyc/qt6book
-        TARGET_BRANCH: main
+        TARGET_BRANCH: release
         BUILD_SCRIPT: yarn && yarn docs:build
         BUILD_DIR: docs/.vuepress/dist/
