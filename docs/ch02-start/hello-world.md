@@ -1,18 +1,18 @@
 # Hello World
 
-To test your installation, we will create a small *hello world* application. Please, open Qt Creator and create a Qt Quick UI Project ( `File ‣ New File or Project ‣ Other Project ‣ Qt Quick UI Prototype` ) and name the project `HelloWorld`.
+为了测试你的安装是否正确，我们会创建一个小型的 *hello world* 应用。请打开 Qt Creator 并创建一个 Qt Quick 工程( `File ‣ New File or Project ‣ Other Project ‣ Qt Quick UI Prototype` )，将其命名为 `HelloWorld`。
 
-::: tip
-The Qt Creator IDE allows you to create various types of applications. If not otherwise stated, we always use a Qt Quick UI prototype project. For a production application you would often prefer a `CMake` based project, but for fast prototyping this type is better suited.
+::: tip 提示
+Qt Creator IDE 允许你创建多种类型的应用。若无特别指出，我们总是使用 Qt Quick UI 原型工程。 对于生产应用程序，您通常更喜欢基于 `CMake` 的项目，但对于快速原型设计，这种类型更适合。
 :::
 
-::: tip
-A typical Qt Quick application is made out of a runtime called the QmlEngine which loads the initial QML code. The developer can register C++ types with the runtime to interface with the native code. These C++ types can also be bundled into a plugin and then dynamically loaded using an import statement. The `qml` tool is a pre-made runtime which is used directly. For the beginning, we will not cover the native side of development and focus only on the QML aspects of Qt 6. This is why we start from a prototype project.
+::: tip 提示
+一个典型的 Qt Quick 应用是由名为 QmlEngine 的运行环境驱动的，它会加载初始的 QML 代码。开发者可以利用运行环境注册 C++ 类型获得与原生代码交互的能力。这些 C++ 类也可以打包成一个插件，在后面通过 import 语句动态导入。`qml` 工具是一个与构建的运行环境，可被直接使用。在初学阶段，我们不会介绍如何开发原生部分，专注于 Qt 6 的 QML 部分。这也是我们为什么从原型工程开始的原因。
 :::
 
-Qt Creator creates several files for you. The `HelloWorld.qmlproject` file is the project file, where the relevant project configuration is stored. This file is managed by Qt Creator, so don’t edit it yourself.
+Qt Creator 创建了好几个文件。`HelloWorld.qmlproject` 是工程文件，存储了关联的项目配置。该文件由 Qt Creator 管理，所以请不要修改他。
 
-Another file, `HelloWorld.qml`, is our application code. Open it and try to understand what the application does before you read on.
+另一个文件 `HelloWorld.qml` 是应用代码。打开它，在阅读后续内容前，先试着理解它。
 
 ```qml
 // HelloWorld.qml
@@ -28,28 +28,28 @@ Window {
 }
 ```
 
-The `HelloWorld.qml` program is written in the QML language. We’ll discuss the QML language more in-depth in the next chapter. QML describes the user interface as a tree of hierarchical elements. In this case, a window of 640 x 480 pixels, with a window title “Hello World”.
+`HelloWorld.qml` 是有 QML 语言编写的。我们会在下一章节深入讨论 QML 语言。QML 将用户界面描述为了一棵多层的树。在本例中，一个标题为 “Hello World”，尺寸为 640 x 480 像素的窗口。
 
-To run the application on your own, press the ![](./assets/qtcreator-run.png) Run tool on the left side, or select Build > Run from the menu.
+要手动运行应用个，点击左侧的运行工具![](./assets/qtcreator-run.png) , 或在菜单上点击 Build > Run。
 
-In the background, Qt Creator runs `qml` and passes your QML document as the first argument. The `qml` application parses the document, and launches the user interface. You should see something like this:
+Qt Creator 会在后台运行 `qml`，并将你的 QML 文档作为第一个参数。`qml` 应用会转换此文档，并运行用户界面。你将会看到这个东西：
 
 ![](./assets/example.png)
 
-Qt 6 works! That means we’re ready to continue.
+Qt 6 成了！这意味着我们能进行下一步了。
 
-::: tip
-If you are a system integrator, you’ll want to have Qt SDK installed to get the latest stable Qt release, as well as a Qt version compiled from source for your specific device target.
+::: tip 提示
+若您是一位系统集成商，则需要安装 Qt SDK 以获取最新的稳定 Qt 版本，以及针对特定设备目标从源代码编译的 Qt 版本。
 :::
 
-::: tip
-Build from Scratch
+::: tip 提示
+从源码构建。
 
-If you’d like to build Qt 6 from the command line, you’ll first need to grab a copy of the code repository and build it. Visit Qt’s wiki for an up-to-date explanation of how to build Qt from git.
+如果你想在命令行构建 Qt 6，你需要先下载源码的副本，然后构建它。访问 Qt 的百科，查找最新的如何从 git 构建 Qt 的文档。
 
-After a successful compilation (and 2 cups of coffee), Qt 6 will be available in the `qtbase` folder. Any beverage will suffice, however, we suggest coffee for best results.
+构建完成后（大约需要 2 杯咖啡的时间），Qt 6 会存在于 `qtbase` 目录。等待期间喝啥都行，但我们推荐咖啡。
 
-If you want to test your compilation, you can now run the example with the default runtime that comes with Qt 6:
+若你想要试下编译结果，可以在 Qt 6 的默认环境下运行实例：
 
     $ qtbase/bin/qml
 :::
