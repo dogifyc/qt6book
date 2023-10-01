@@ -1,27 +1,26 @@
 
-# Qt Building Blocks
+# Qt 积木
 
-Qt 6 consists of a large number of modules. In general, a module is a library for the developer to use. Some modules are mandatory for a Qt-enabled platform and form the set called *Qt Essentials Modules*. Other modules are optional, and form the *Qt Add-On Modules*. The majority of developers may not need to use the latter, but it’s good to know about them as they provide invaluable solutions to common challenges.
+Qt 6 由大量模块组成。一般来说，我们将开发者使用的一个库就称为一个模块。某些模块对启用了 Qt 的平台是必要的，这些模块构成了名为*Qt 必要模块*的集合。其它可选模块组成了 *Qt 可选模块*。大部分开发者可能不需要使用后者，但是了解它们也是不错的，因为它们提供了对常见问题的有效解。
+## Qt 模块
 
-## Qt Modules
+Qt 必要模块对启用了 Qt 的平台是必须的。它们提供了使用 Qt Quick 2 开发 Qt 6 应用的基础能力。完整的模块列表见[Qt 模块列表](https://doc.qt.io/qt-6/qtmodules.html#qt-essentials)。
 
-The Qt Essentials modules are mandatory for any Qt-enabled platform. They offer the foundation to develop modern Qt 6 Applications using Qt Quick 2. The full list of modules is available in the [Qt documentation module list](https://doc.qt.io/qt-6/qtmodules.html#qt-essentials).
+## 核心基础模块
 
-## Core-Essential Modules
+开始 QML 编程的最小模块集合。
 
-The minimal set of Qt 6 modules to start QML programming.
-
-* **Qt Core** - Core non-graphical classes used by other modules.
-* **Qt D-BUS** - Classes for inter-process communication over the D-Bus protocol on linux.
-* **Qt GUI** - Base classes for graphical user interface (GUI) components. Includes OpenGL.
-* **Qt Network** - Classes to make network programming easier and more portable.
-* **Qt QML** - Classes for QML and JavaScript languages.
-* **Qt Quick** - A declarative framework for building highly dynamic applications with custom user interfaces.
-* **Qt Quick Controls** - Provides lightweight QML types for creating performant user interfaces for desktop, embedded, and mobile devices. These types employ a simple styling architecture and are very efficient.
-* **Qt Quick Layouts** - Layouts are items that are used to arrange Qt Quick 2 based items in the user interface.
-* **Qt Quick Test** - A unit test framework for QML applications, where the test cases are written as JavaScript functions.
-* **Qt Test** - Classes for unit testing Qt applications and libraries.
-* **Qt Widgets** - Classes to extend Qt GUI with C++ widgets.
+* **Qt Core** - 其它模块使用的核心非图形化类。
+* **Qt D-BUS** - Linux 平台通过 D-Bus 协议进行跨进程通讯使用的类。
+* **Qt GUI** - 用于图形用户界面（GUI）的基类。包括 OpenGL。
+* **Qt Network** - 用于简化网络编程的轻量类库。
+* **Qt QML** - 用于 QML 和 JavaScript 语言的类。
+* **Qt Quick** - 一个用于构建动态的用户自定义界面的神明式框架。
+* **Qt Quick Controls** - 提供用于构建高性能桌面，嵌入式和移动设备用户界面的轻量级的 QML 类型。这些类型采用简单的样式结构，非常高效。
+* **Qt Quick Layouts** - 布局用于安排基于 Qt Quick 2的组件在用户界面上的位置。
+* **Qt Quick Test** - 用于 QML 应用的单元测试框架，其中的测试用例写起来像 JavaScript 函数。
+* **Qt Test** - 用于 Qt 应用单元测试的类。
+* **Qt Widgets** - 继承 C++ 编写的 Qt GUI 组件类。
 
 ```mermaid
 graph BT
@@ -36,35 +35,35 @@ QtQuick --> QtQuickControls
 ```
 
 
-## Qt Add-On Modules
+## Qt 附加模块
 
-Besides the essential modules, Qt offers additional modules that target specific purposes. Many add-on modules are either feature-complete and exist for backwards compatibility, or are only applicable to certain platforms. Here is a list of some of the available add-on modules, but make sure you familiarize yourself with them all in the [Qt documentation add-ons list](https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons) and in the list below.
+除了基础模块外，Qt 还提供了用于特殊目的的附件模块。很多附件模块是功能完备的，或者为了向前兼容而存在，又或者只用于特定平台。以下是部分附加模块的列表，完整列表参见 [Qt 文档附件模块列表](https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons)。
 
-* **Network**: Qt Bluetooth / Qt Network Authorization
-* **UI Components**: Qt Quick 3D / Qt Quick Timeline / Qt Charts / Qt Data Visualization / Qt Lottie Animation / Qt Virtual Keyboard
+* **Network**: Qt Bluetooth（蓝牙） / Qt Network Authorization（网络认证）
+* **UI Components**: Qt Quick 3D / Qt Quick Timeline / Qt Charts（图表） / Qt Data Visualization（数据可视化） / Qt Lottie Animation / Qt Virtual Keyboard（虚拟键盘）
 * **Graphics**: Qt 3D / Qt Image Formats / Qt OpenGL / Qt Shader Tools / Qt SVG / Qt Wayland Compositor
-* **Helper**: Qt 5 Core Compatibility APIs / Qt Concurrent / Qt Help / Qt Print Support / Qt Quick Widgets / Qt SCXML / Qt SQL / Qt State Machine / Qt UI Tools / Qt XML
+* **Helper**: Qt 5 Core Compatibility APIs（核心兼容API） / Qt Concurrent（协程） / Qt Help（帮助） / Qt Print Support（打印支持） / Qt Quick Widgets / Qt SCXML / Qt SQL / Qt State Machine / Qt UI Tools / Qt XML
 
-::: tip
-As these modules are not part of the release, the state of each module may differ depending on how many contributors are active and how well it’s tested.
+::: tip 提示
+因为这些模块不是发行版的一部分，所有每个模块的状态取决于贡献者的活跃度和测试程度。
 :::
 
-## Supported Platforms
+## 支持的平台
 
-Qt supports a variety of platforms including all major desktop and embedded platforms. Through the Qt Platform Abstraction, it’s now easier than ever to port Qt to your own platform if required.
+Qt 支持主要的桌面和嵌入式平台在内的大量平台。必要的话，现在利用 Qt 平台的抽象讲其移动到您的平台比以往任何时候都简单。
 
-Testing Qt 6 on a platform is time-consuming. A subset of platforms was selected by the Qt Project to build the reference platforms set. These platforms are thoroughly tested through the system testing to ensure the best quality. However, keep in mind that no code is error-free.
+在任意平台上测试 Qt 6 都是一项耗时的工作。所有 Qt 工程挑选了部分平台作为常用平台。在这些平台上，Qt 通过完整的系统测试确保最佳的代码质量。不过，请牢记，没有代码不会出错。
 
-# Qt Project
+# Qt 工程
 
-From the [Qt Wiki](http://wiki.qt.io/):
+来自 [Qt 百科](http://wiki.qt.io/):
 
-> “The Qt Wiki is a meritocratic consensus-based community interested in Qt. Anyone who shares that interest can join the community, participate in its decision-making processes, and contribute to Qt’s development.”
+> “Qt 百科是一个基于精英共识的关注 Qt 的社区。任何对其感兴趣的人可以加入社区，参与决定进行，为 Qt 开发贡献一份力。”
 
-The Qt Wiki is a place where Qt users and contributors share their insights. It forms the base for other users to contribute. The biggest contributor is The Qt Company, which holds also the commercial rights to Qt.
+Qt 百科是一个 Qt 用户和贡献者可以分享其观点的地方。它构成了其他用户做出贡献的基础。最大的贡献者是 Qt 公司，其持有 Qt 的商业版权。
 
-Qt has an open-source aspect and a commercial aspect for companies. The commercial aspect is for companies which can not or will not comply with the open-source licenses. Without the commercial aspect, these companies would not be able to use Qt and it would not allow The Qt Company to contribute so much code to the Qt Project.
+Qt 对企业存在开源授权和商业授权。商业方面适用于不能或不会遵守开源许可证的公司。没有商业授权的话，这些公司将没有机会使用 Qt，Qt 公司也无法开发如此多的 Qt 代码。
 
-There are many companies worldwide, which make the living out of consultancy and product development using Qt on the various platforms. There are many open-source projects and open-source developers, which rely on Qt as their major development library. It feels good to be part of this vibrant community and to work with this awesome tools and libraries. Does it make you a better person? Maybe:-)
+全球有许多公司，它们以在各种平台上使用Qt提供咨询和产品开发为生。也有很多开源项目和开源开发者，他们将 Qt 作为其主要依赖。成为这个充满活力的社区的一员，使用这些令人赞不绝口的工具和库令人感觉不错。它是否让你成为更好的自己？大概:-)
 
-**Contribute here: http://wiki.qt.io/**
+**欢迎光临：http://wiki.qt.io/**
