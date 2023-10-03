@@ -1,46 +1,46 @@
-# Application Types
+# 应用类型
 
-This section is a run through of different application types one can write with Qt 6. It’s not limited to the selection presented here, but it will give you a better idea of what you can achieve with Qt 6 in general.
+本节展示了 Qt 6 能编写的各种应用类型。Qt 6 不仅限于此处介绍的选项，但下面的介绍会让您更好地了解使用 Qt 6 可以实现的目标。
 
-## Console Application
+## 控制台应用
 
-A console application does not provide a graphical user interface, and is usually called as part of a system service or from the command line. Qt 6 comes with a series of ready-made components which help you create cross-platform console applications very efficiently. For example, the networking file APIs, string handling, and an efficient command line parser. As Qt is a high-level API on top of C++, you get programming speed paired with execution speed. Don’t think of Qt as being *just* a UI toolkit - it has so much more to offer!
+控制台应用并未提供用户界面，一般作为系统服务的一部分或者从命令行调用。Qt 6 自带了一套现成的组件，它们会帮助你高效地创建跨平台控制台应用。例如，网络文件 API，字符串处理和一个高效的命令行转换器。因为 Qt 是对 C++ 的高度抽象，你可以同时获得快速开发和高速执行能力。不要认为 Qt *仅仅* 是一个 UI 套件 ———— 它能提供更多的功能。
 
-### String Handling
+### 字符串处理
 
-This first example demonstrates how you could add 2 constant strings. Admittedly, this is not a very useful application, but it gives you an idea of what a native C++ application without an event loop may look like.
+第一个例子演示了如何拼接两个字符串常量。需要承认的是，这不是一个实用的应用，但是它向你展示了没有事件循环的原生 C++ 应用是啥样的。
 
 ```cpp
-// module or class includes
+// 引入需要的模型和类
 #include <QtCore>
 
-// text stream is text-codec aware
+// text stream 可识别文本编码
 QTextStream cout(stdout, QIODevice::WriteOnly);
 
 int main(int argc, char** argv)
 {
-    // avoid compiler warnings
+    // 避免编译告警
     Q_UNUSED(argc)
     Q_UNUSED(argv)
     QString s1("Paris");
     QString s2("London");
-    // string concatenation
+    // 拼接字符串
     QString s = s1 + " " + s2 + "!";
     cout << s << Qt::endl;
 }
 ```
 
-### Container Classes
+### 容器类
 
-This example adds a list, and list iteration, to the application. Qt comes with a large collection of container classes that are easy to use, and has the same API paradigms as other Qt classes.
+本例给应用新增了一个列表，并遍历了列表。Qt 自带了大量便于使用的容器类，它们和其它 Qt 类遵循同样的 API 规范。
 
 ```cpp
 QString s1("Hello");
 QString s2("Qt");
 QList<QString> list;
-// stream into containers
+// 流入容器
 list << s1 << s2;
-// Java and STL like iterators
+// Java 和 STL 类似遍历器
 QListIterator<QString> iter(list);
 while(iter.hasNext()) {
     cout << iter.next();
@@ -51,20 +51,20 @@ while(iter.hasNext()) {
 cout << "!" << Qt::endl;
 ```
 
-Here is a more advanced list function, that allows you to join a list of strings into one string. This is very handy when you need to proceed line based text input. The inverse (string to string-list) is also possible using the `QString::split()` function.
+这里有个更高级的列表函数，这允许你将列表中的字符串拼接成一个。This is very handy when you need to proceed line based text input. The inverse (string to string-list) is also possible using the `QString::split()` function.
 
 ```cpp
 QString s1("Hello");
 QString s2("Qt");
-// convenient container classes
+// 方便的容器类
 QStringList list;
 list <<  s1 << s2;
-// join strings
+// 拼接字符串
 QString s = list.join(" ") + "!";
 cout << s << Qt::endl;
 ```
 
-### File IO
+### 文件 IO
 
 In the next snippet, we read a CSV file from the local directory and loop over the rows to extract the cells from each row. Doing this, we get the table data from the CSV file in ca. 20 lines of code. File reading gives us a byte stream, to be able to convert this into valid Unicode text, we need to use the text stream and pass in the file as a lower-level stream. For writing CSV files, you would just need to open the file in write mode, and pipe the lines into the text stream.
 
