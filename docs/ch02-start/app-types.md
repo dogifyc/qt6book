@@ -1,6 +1,6 @@
 # 应用类型
 
-本节展示了 Qt 6 能编写的各种应用类型。Qt 6 不仅限于此处介绍的选项，但下面的介绍会让您更好地了解使用 Qt 6 可以实现的目标。
+本节展示了 Qt 6 能编写的各种应用类型。Qt 6 不仅限于此处介绍的应用类型，但下面的介绍会让您更好地了解 Qt 6 能实现的应用类型。
 
 ## 控制台应用
 
@@ -51,7 +51,7 @@ while(iter.hasNext()) {
 cout << "!" << Qt::endl;
 ```
 
-这里有个更高级的列表函数，这允许你将列表中的字符串拼接成一个。This is very handy when you need to proceed line based text input. The inverse (string to string-list) is also possible using the `QString::split()` function.
+这里有个更高级的列表函数，这允许你将列表中的字符串拼接成一个。这在处理基于行的文本输入时，十分便利。反向处理（字符串转为字符串列表）可以通过 `QString::split()` 实现。
 
 ```cpp
 QString s1("Hello");
@@ -66,45 +66,45 @@ cout << s << Qt::endl;
 
 ### 文件 IO
 
-In the next snippet, we read a CSV file from the local directory and loop over the rows to extract the cells from each row. Doing this, we get the table data from the CSV file in ca. 20 lines of code. File reading gives us a byte stream, to be able to convert this into valid Unicode text, we need to use the text stream and pass in the file as a lower-level stream. For writing CSV files, you would just need to open the file in write mode, and pipe the lines into the text stream.
+下面的代码中，我们从本地目录读取了一个 CSV 文件，循环迭代每行，获取单元数据。我们只需 20 行左右的代码就能从 CSV 文件中获取表数据。文件返回了一个字节流，让我们能将其转成有效的 Unicode 编码的文本，需要将文件作为文本流的上级输入。要输出 CSV 文件，我们只需将文件以写入模式打开，将行依次流入该文本流。
 
 ```cpp
 QList<QStringList> data;
-// file operations
+// 文件操作
 QFile file("sample.csv");
 if(file.open(QIODevice::ReadOnly)) {
     QTextStream stream(&file);
     // loop forever macro
     forever {
         QString line = stream.readLine();
-        // test for null string 'String()'
+        // 判断字符串 'String()' 是否为 null
         if(line.isNull()) {
             break;
         }
-        // test for empty string 'QString("")'
+        // 判断字符串 'QString("")' 是否为空
         if(line.isEmpty()) {
             continue;
         }
         QStringList row;
-        // for each loop to iterate over containers
+        // 迭代容器内的每一行
         foreach(const QString& cell, line.split(",")) {
             row.append(cell.trimmed());
         }
         data.append(row);
     }
 }
-// No cleanup necessary.
+// 无需清理
 ```
 
-This concludes the section about console based applications with Qt.
+Qt 基于控制台的应用程序的部分到此结束。
 
-## C++ Widget Application
+## C++ 界面应用
 
-Console based applications are very handy, but sometimes you need to have a graphical user interface (GUI). In addition, GUI-based applications will likely need a back-end to read/write files, communicate over the network, or keep data in a container.
+控制台应用非常有用，但是有时你期望有个可视化的用户界面（GUI）。基于 GUI 的应用也需要后端代码来读取/写入文件，与网络沟通或将数据存在容器中。
 
-In this first snippet for widget-based applications, we do as little as needed to create a window and show it. In Qt, a widget without a parent is a window. We use a scoped pointer to ensure that the widget is deleted when the pointer goes out of scope. The application object encapsulates the Qt runtime, and we start the event loop with the `exec()` call. From there on, the application reacts only to events triggered by user input (such as mouse or keyboard), or other event providers, such as networking or file IO. The application only exits when the event loop is exited. This is done by calling `quit()` on the application or by closing the window.
+在第一个基于视图的应用的代码段中，我们用最少的代码创建了一个窗口并展示它。在 Qt 中，一个没有上级的视图组件就是窗口。我们使用范围指针确保指针在超出范围的时候会被销毁。应用对象封装了 Qt 运行时，通过调用 `exec()` 启动了事件循环。随后，应用只会响应由诸如用户输入（鼠标或键盘），其它例如网络或文件 IO 的事件提供者触发的事件。应用只会在事件循环退出后退出。这需要调用 `quit()` 或关闭窗口。
 
-When you run the code, you will see a window with the size of 240 x 120 pixels. That’s all.
+当你运行代码时，你会看到一个 240 x 120 像素的窗口。完毕。
 
 ```cpp
 include <QtGui>
@@ -119,9 +119,9 @@ int main(int argc, char** argv)
 }
 ```
 
-### Custom Widgets
+### 自定义视图组件
 
-When you work on user interfaces, you may need to create custom-made widgets. Typically, a widget is a window area filled with painting calls. Additionally, the widget has internal knowledge of how to handle keyboard and mouse input, as well as how to react to external triggers. To do this in Qt, we need to derive from QWidget and overwrite several functions for painting and event handling.
+当你编写用户界面时，你可能需要创建自定义视图组件。通常来说，视图组件就是一个充满绘图调用的视窗。另外，该组件内置了如何处理键盘和鼠标输入的代码，以及其它外部事件。在 Qt 中，我们要自 QWidget 派生，并重写几个用于绘图和事件处理的函数。
 
 ```cpp
 #pragma once
@@ -141,7 +141,7 @@ private:
 };
 ```
 
-In the implementation, we draw a small border on our widget and a small rectangle on the last mouse position. This is very typical for a low-level custom widget. Mouse and keyboard events change the internal state of the widget and trigger a painting update. We won’t go into too much detail about this code, but it is good to know that you have the possibility. Qt comes with a large set of ready-made desktop widgets, so it’s likely that you don’t have to do this.
+在实现类中，我们给视图画了一个边框，且在鼠标最后的位置画了一个小矩形。这对低级自定义视图组件来说非常常见。鼠标和键盘事件修改了组件的内部装填，并触发了组件的重绘。我们不会过多介绍这份代码的细节，但是很高兴你知道这种可能性。Qt 自带了大量的预制桌面组件，你可能不需要这么做。
 
 ```cpp
 include "customwidget.h"
@@ -180,11 +180,11 @@ void CustomWidget::mouseMoveEvent(QMouseEvent *event)
 }
 ```
 
-### Desktop Widgets
+### 桌面组件
 
-The Qt developers have done all of this for you already and provide a set of desktop widgets, with a native look on different operating systems. Your job, then, is to arrange these different widgets in a widget container into larger panels. A widget in Qt can also be a container for other widgets. This is accomplished through the parent-child relationship. This means we need to make our ready-made widgets, such as buttons, checkboxes, radio buttons, lists, and grids, children of other widgets. One way to accomplish this is displayed below.
+Qt 开发者早已为你准备了一套桌面组件，这些组件在不同的操作系统上具有本地化的外观。你只需在一个将这些组件放置在一个更大的面板上即可。Qt 中的一个视图组件也可以是其它组件的容器。这通过父子关系进行关联。这意味着我们需要制作现成组件，例如按钮，复选框，单选框，列表和网格，其它视图的子组件。达到此目的的其中一种方式如下所示。
 
-Here is the header file for a so-called widget container.
+以下是一个所谓的视图容器的头文件。
 
 ```cpp
 class CustomWidget : public QWidget
@@ -202,7 +202,7 @@ private:
 };
 ```
 
-In the implementation, we use layouts to better arrange our widgets. Layout managers re-layout the widgets according to some size policies when the container widget is re-sized. In this example, we have a list, a line edit, and a button, which are arranged vertically and allow the user to edit a list of cities. We use Qt’s `signal` and `slots` to connect sender and receiver objects.
+在实现中，我们使用布局来更好的排布组件。在视图尺寸变更时，布局管理器根据一些尺寸原则对组件进行重新布局。本例中有一个列表，一个行文本编辑器，一个按钮，它们垂直排布，允许用户编辑城市列表。我们用 Qt 的 `信号` 和 `槽` 来连接发送者和接受者。
 
 ```cpp
 CustomWidget::CustomWidget(QWidget *parent) :
@@ -245,11 +245,11 @@ void CustomWidget::updateItem()
 }
 ```
 
-### Drawing Shapes
+### 绘制形状
 
-Some problems are better visualized. If the problem at hand looks remotely like geometrical objects, Qt graphics view is a good candidate. A graphics view arranges simple geometrical shapes in a scene. The user can interact with these shapes, or they are positioned using an algorithm. To populate a graphics view, you need a graphics view and a graphics scene. The scene is attached to the view and is populated with graphics items.
+一些问题更适合可视化。如果手头的问题有点像几何问题，Qt graphics 视图会是一个不错的选择。一个图形视图在一个场景中放置简单的集合图形。用户可以与这些图形进行交互，或通过算法来定位它们。要填充一个几何图形，你需要一个图形视图和一个图形场景。场景附着在视图上，且填充这几何图形。
 
-Here is a short example. First the header file with the declaration of the view and scene.
+以下是一个短例。一个申明了视图和场景的头文件。
 
 ```cpp
 class CustomWidgetV2 : public QWidget
@@ -264,7 +264,7 @@ private:
 };
 ```
 
-In the implementation, the scene gets attached to the view first. The view is a widget and gets arranged in our container widget. In the end, we add a small rectangle to the scene, which is then rendered on the view.
+在实现中，场景首先附着到视图中。该视图是一个由容器组件负责布局的组件。最后，我们为场景添加了一个小矩形边框，它会在视图上渲染。
 
 ```cpp
 include "customwidgetv2.h"
@@ -286,9 +286,9 @@ CustomWidget::CustomWidget(QWidget *parent) :
 }
 ```
 
-## Adapting Data
+## 动态数据
 
-Up to now, we have mostly covered basic data types and how to use widgets and graphics views. In your applications, you will often need a larger amount of structured data, which may also need to be stored persistently. Finally, the data also needs to be displayed. For this, Qt uses models. A simple model is the string list model, which gets filled with strings and then attached to a list view.
+到目前我们，我们已基本了解数据类型和如何使用组件和图形视图。在应用中，你会使用大量的结构化数据，这些数据需要被永久存储。当然，这些数据页需要被展示。为此，Qt 定义了模型。简单的模型如字符串列表模型，它填满了字符串，并挂载到列表视图上。
 
 ```cpp
 m_view = new QListView(this);
@@ -300,7 +300,7 @@ cities << "Munich" << "Paris" << "London";
 m_model->setStringList(cities);
 ```
 
-Another popular way to store and retrieve data is SQL. Qt comes with SQLite embedded, and also has support for other database engines (e.g. MySQL and PostgreSQL). First, you need to create your database using a schema, like this:
+另一种受欢迎的存取数据的方式是 SQL。Qt 集成了 SQLite，同时也支持其它数据库引擎（如 MySQL 和 PostgreSQL）。首选，你需要用如下的 schema 创建数据库：
 
 ```sql
 CREATE TABLE city (name TEXT, country TEXT);
@@ -309,7 +309,7 @@ INSERT INTO city VALUES ("Paris", "France");
 INSERT INTO city VALUES ("London", "United Kingdom");
 ```
 
-To use SQL, we need to add the SQL module to our .pro file
+用使用 SQL，我们需要在 .pro 文件中添加 SQL 模块
 
 ```
 QT += sql
