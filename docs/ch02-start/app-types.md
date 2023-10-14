@@ -315,7 +315,7 @@ INSERT INTO city VALUES ("London", "United Kingdom");
 QT += sql
 ```
 
-And then we can open our database using C++. First, we need to retrieve a new database object for the specified database engine. With this database object, we open the database. For SQLite, it’s enough to specify the path to the database file. Qt provides some high-level database models, one of which is the table model. The table model uses a table identifier and an optional where clause to select the data. The resulting model can be attached to a list view as with the other model before.
+随后我们使用 C++ 打开数据库。首先，我们需要获取指定数据库引擎的新数据库对象。我们通过数据库对象打开数据库。对于 SQLite 来说，只需指定数据库文件的路径。Qt 提供了一些高阶数据库模型，其中有个叫表格模型。表格模型使用了一个表格标识符和一个可选的 where 子句。这个结果模型可以向前面的其它模型一样附着到一个列表视图中。
 
 ```cpp
 QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -333,7 +333,7 @@ view->setModel(m_model);
 m_model->select();
 ```
 
-For a higher level model operations, Qt provides a sorting file proxy model that allows you sort, filter, and transform models.
+对于进阶的模型操作，Qt 提供了一个排序文件代理模型，它允许你对模型进行排序，过滤，和转换。
 
 ```cpp
 QSortFilterProxyModel* proxy = new QSortFilterProxyModel(this);
@@ -342,7 +342,7 @@ view->setModel(proxy);
 view->setSortingEnabled(true);
 ```
 
-Filtering is done based on the column that is to be filters, and a string as filter argument.
+过滤器作用于要被过滤的列上，且需要一个字符串过滤器参数。
 
 ```cpp
 proxy->setFilterKeyColumn(0);
@@ -350,21 +350,21 @@ proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
 proxy->setFilterFixedString(QString)
 ```
 
-The filter proxy model is much more powerful than demonstrated here. For now, it is enough to remember it exists.
+过滤器代理模型比这里展示的要厉害的多。不过目前，只要记住过滤器的存在即可。
 
-!!! note
+!!! 注意
 
-    This has been an overview of the different kind of classic applications you can develop with Qt 5. The desktop is moving, and soon the mobile devices will be our desktop of tomorrow. Mobile devices have a different user interface design. They are much more simplistic than desktop applications. They do one thing and they do it with simplicity and focus. Animations are an important part of the mobile experience. A user interface needs to feel alive and fluent. The traditional Qt technologies are not well suited for this market.
+    以上就是 Qt 5 能够开发的各种典型应用的概述。桌面开发一直在发展，不久，移动端设备会成为新的桌面设备。移动端设备拥有一个不同的用户界面设计。它们比桌面软件要简单的多。它们专注于做一件事，且做这件事的过程很简单。动画是移动端的一种重要体验。用户界面需要让人感觉到灵动和流畅。传统的 Qt 技术不太适合这个市场。
 
-*Coming next: Qt Quick to the rescue.*
+*接下来：Qt Quick 来救你*
 
-## Qt Quick Application
+## Qt Quick 应用
 
-There is an inherent conflict in modern software development. The user interface is moving much faster than our back-end services. In a traditional technology, you develop the so-called front-end at the same pace as the back-end. This results in conflicts when customers want to change the user interface during a project, or develop the idea of a user interface during the project. Agile projects, require agile methods.
+在现代软件开发中有一个固有的冲突。用户界面比后端服务发展的快多了。在传统技术中，你需要同步开发前端和后端。当客户想要在软件开发过程中修改用户界面或在项目期间变更用户界面的理念时，会导致一些冲突。敏捷项目需要敏捷方法。
 
-Qt Quick provides a declarative environment where your user interface (the front-end) is declared like HTML and your back-end is in native C++ code. This allows you to get the best of both worlds.
+Qt Quick 提供了一个声明式的环境，用户界面（前端）在其中以类似 HTML 的方式申明，而后端则是原生 C++ 代码。这使得你可以两全其美。
 
-This is a simple Qt Quick UI below
+以下是一个简单的 Qt Quick UI
 
 ```qml
 import QtQuick
@@ -379,7 +379,7 @@ Rectangle {
 }
 ```
 
-The declaration language is called QML and it needs a runtime to execute it. Qt provides a standard runtime called `qml`. You can also write a custom runtime. For this, we need a quick view and set the main QML document as a source from C++. Then you can show the user interface.
+这种声明式的语言被称为 QML，且在执行时需要一个运行时环境。Qt 提供了一个名为 `qml` 的标准运行时环境，你也可以写一个自定义的运行时环境。为此，我们需要一个快捷视图，且需要在 C++ 代码中设置这个 主 QML 文档。然后你可以显示这个用户界面。
 
 ```cpp
 #include <QtGui>
@@ -393,9 +393,9 @@ int main(int argc, char *argv[])
 }
 ```
 
-Let’s come back to our earlier examples. In one example, we used a C++ city model. It would be great if we could use this model inside our declarative QML code.
+让我们回到更早的例子中。在这个例子中，我们使用了一个 C++ 的城市模型。它很适合用在我们的声明式 QML 代码中。
 
-To enable this, we first code our front-end to see how we would want to use a city model. In this case, the front-end expects an object named `cityModel` which we can use inside a list view.
+为了启用这个模型，我们先编写前端代码，看看我们打算如何使用它。本例中，前端期望一个名为 `cityModel` 的模型，它可被用在列表视图中。
 
 ```qml
 import QtQuick
@@ -411,7 +411,7 @@ Rectangle {
 }
 ```
 
-To enable the `cityModel`, we can mostly re-use our previous model, and add a context property to our root context. The root context is the other root-element in the main document.
+要启用 `cityModel`，我们基本可以复用前面的模型，不过要在我们的根上下文中添加一个 context 属性。根上下文是主文档中的另一个根元素。
 
 ```cpp
 m_model = QSqlTableModel(this);
