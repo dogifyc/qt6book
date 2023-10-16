@@ -1,22 +1,22 @@
-# The User Interface
+# 用户界面
 
-When starting Qt Creator you are greeted by the *Welcome* screen. There you will find the most important hints on how to continue inside Qt Creator and your recently used projects. You will also see the sessions list, which might be empty for you. A session is a collection of projects and configurations stored for fast access. This comes really handy when you have several customers with larger projects.
+运行 Qt Creator 后，你将看到*欢迎*页面。你可在此找到最近打开的项目和最重要的如何在 Qt Creator 进行后续工作的提示。你也可以看到会话列表，不过你看到的可能是空的。会话是一组快速访问项目和配置的集合。这在你有好几个拥有大型大型的客户时非常有用。
 
-On the left side, you will see the mode-selector. The mode selectors support typical steps from a developer workflow.
+在左侧，你会看到模式选择器。这些模式选择器支持常规的开发者工作流。
 
-* **Welcome mode**: For your orientation.
-* **Edit mode**: Focus on the code
-* **Design mode**: Focus on the UI design
-* **Debug mode**: Retrieve information about a running application
-* **Projects mode**: Modify your projects run and build configuration
-* **Analyze mode**: For detecting memory leaks and profiling
-* **Help mode**: Easy access to the Qt documentation
+* **欢迎模式**：猜你喜欢
+* **编辑模式**: 专注于编码
+* **设计模式**：专注于 UI 设计
+* **调试模式**：获取当前运行程序的信息
+* **项目模式**：修改项目的运行和构建配置
+* **分析模式**：用于检测内存泄漏和特征分析
+* **帮助模式**：方便的访问 Qt 文档
 
-Below the mode-selectors, you will find the actual project-configuration selector and the run/debug
+在模式选择器下方，你会看到事实上的项目配置选择器和 run/debug。
 
 ![](./assets/creator-welcome.png)
 
-Most of the time you will be in the edit mode with the code-editor in the central panel. From time to time, you will visit the Projects mode when you need to configure your project. And then you press `Run`. Qt Creator is smart enough to ensure your project is fully built before running it.
+大部分时间你都会使用编辑模式，看着中央的代码编辑器。你还会时不时地在需要配置项目时访问项目模式。然后点击 `Run`，Qt Creator 足够聪明，会在项目构建完成后运行它。
 
-In the bottom are the output panes for issues, application messages, compile messages, and other messages.
+底部是用于输出 issue，应用消息，编译消息和其它消息的面板。
 
