@@ -4,7 +4,7 @@ Qt Creator 是 Qt 的默认集成开发环境。它是 Qt 作者为 Qt 开发者
 
 ![](./assets/qtcreator-screenshots.png)
 
-::: 警告
+::: warning 警告
 更新快照！
 :::
 
