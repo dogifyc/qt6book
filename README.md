@@ -51,7 +51,7 @@ $ yarn run examples:package
 
 这将会在你的包根目录创建 `examples.tar.gz`，这也是 VuePress 输出的位置，如 `docs/.vuepress/dist/`。
 
-Notice that the `examples:package` command assumes that the VuePress `dist/` directory exists.
+注意，`examples:package` 假定 VuePress 的 `dist/` 目录已存在。
 
 # 3. 对审阅者
 

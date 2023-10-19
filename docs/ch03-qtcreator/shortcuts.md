@@ -1,22 +1,22 @@
-# Shortcuts
+# 快捷键
 
-Shortcuts are the difference between a nice-to-use editor and a professional editor. As a professional you spend hundreds of hours in front of your application. Each shortcut which makes your work-flow faster counts. Luckily the developers of Qt Creator think the same and have added literally hundreds of shortcuts to the application.
+快捷键是一个好使的编辑器和一个专业编辑器之间的区别。作为一个专业人员，你需要在你的应用上花费成百上千小时。每个使您的工作流程更快的快捷键都很重要。幸运的是，Qt Creator 的开发者与你持有相同观点，且已经为其添加了数百个快捷键。
 
-To get started we have collection some basic shortcuts (in Windows notation):
+我们收集了一些基本的快捷键（windows环境）：
 
-* `Ctrl+B` - Build project
-* `Ctrl+R` - Run Project
-* `Ctrl+Tab` - Switch between open documents
-* `Ctrl+K` - Open Locator
-* `Esc` - Go back (hit several times and you are back in the editor)
-* `F2` - Follow Symbol under cursor
-* `F4` - Switch between header and source (only useful for c++ code)
+* `Ctrl+B` - 构建项目
+* `Ctrl+R` - 运行项目
+* `Ctrl+Tab` - 在打开的文档中切换
+* `Ctrl+K` - 打开定位器
+* `Esc` - 返回 （连按好几次，你就会回到编辑器）
+* `F2` - 跟随鼠标指向的符号
+* `F4` - 在头文件和源文件之间切换（仅对 C++ 代码有效）
 
-List of [Qt Creator shortcuts](http://doc.qt.io/qtcreator/creator-keyboard-shortcuts.html) from the documentation.
+[Qt Creator 快捷键](http://doc.qt.io/qtcreator/creator-keyboard-shortcuts.html) 列表文档。
 
-## Configure Shortcuts
+## 配置快捷键
 
-You can configure the shortcuts from inside creator using the settings dialog.
+你可以在 creator 内通过设置对话框配置快捷键。
 
 ![](./assets/creator-edit-shortcuts.png)
 
