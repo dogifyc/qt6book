@@ -382,7 +382,7 @@ function ch05Sidebar() {
 
 function ch04Sidebar() {
   return {
-    title: "Quick Starter",
+    title: "快速开始",
     path: '/ch04-qmlstart/quick-start',
     collapsable: false,
     children: [
