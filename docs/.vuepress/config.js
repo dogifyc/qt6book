@@ -15,7 +15,7 @@ module.exports = {
   ],  
   themeConfig: {
     displayAllHeaders: false,
-    repo: 'qmlbook/qt6book',
+    repo: 'dogifyc/qt6book',
     repoLabel: 'Contribute!',
     docsDir: 'docs',
     docsBranch: 'main',
