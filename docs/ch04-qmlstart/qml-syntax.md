@@ -1,93 +1,93 @@
-# QML Syntax
+# QML 语法
 
-QML is a declarative language used to describe how objects relate to each other. QtQuick is a framework built on QML for building the user interface of your application. It breaks down the user interface into smaller elements, which can be combined into components. QtQuick describes the look and the behavior of these user interface elements. This user interface description can be enriched with JavaScript code to provide simple but also more complex logic. In this perspective, it follows the HTML-JavaScript pattern but QML and QtQuick are designed from the ground up to describe user interfaces, not text-documents.
+QML 是一种描述对象间如何互相关联的声明式语言。QtQuick 是基于 QML 的框架，用于构建用户界面。它将用户界面拆分成更小的元素，这些元素可以构成组件。QtQuick 描述了这些用户元素的外观和行为。此用户界面描述可用 JavaScript 扩充功能，提供简单或复杂的逻辑。从这个角度来看，它遵循HTML-JavaScript模式，但QML和QtQuick是从头开始设计的，用于描述用户界面，而不是文本文档。
 
-In its simplest form, QtQuick lets you create a hierarchy of elements. Child elements inherit the coordinate system from the parent. An `x,y` coordinate is always relative to the parent.
+在最简单的形式下，QtQuick 允许创建层级结构。子元素继承了父元素的坐标系。一个 `x,y` 坐标总是关联其父。
 
-::: tip
-QtQuick builds on QML. The QML language only knows of elements, properties, signals and bindings. QtQuick is a framework built on QML. Using default properties, the hierarchy of QtQuick elements can be constructed in an elegant way.
+::: tip 提示
+QtQuick 构建在 QML 之上。QML 语言仅知道元素，属性，信号和绑定。QtQuick 是一个基于 QML 的框架。使用默认属性，QtQuick元素的层次结构可以以一种优雅的方式构建。
 :::
 
 ![](./assets/scene.png)
 
-Let’s start with a simple example of a QML file to explain the different syntax.
+让我们从一个简单的QML文件示例开始，以解释不同的语法。
 
 <<< @/docs/ch04-qmlstart/src/concepts/RectangleExample.qml#global
 
-* The `import` statement imports a module. An optional version in the form of `<major>.<minor>` can be added.
-* Comments can be made using `//` for single line comments or `/* */` for multi-line comments. Just like in C/C++ and JavaScript
-* Every QML file needs to have exactly one root element, like HTML
-* An element is declared by its type followed by `{ }`
-* Elements can have properties, they are in the form `name: value`
-* Arbitrary elements inside a QML document can be accessed by using their `id` (an unquoted identifier)
-* Elements can be nested, meaning a parent element can have child elements. The parent element can be accessed using the `parent` keyword
+* `import` 语句导入模块。可以添加一个可选的 `<major>.<minor>` 版本。
+* 就像 C/C++ 和 JavaScript 一样，可用 `//` 添加单行注释，`/* */` 添加多行注释。
+* 每份 QML 文件只能有一个根元素，就像 HTML 一样
+* 一个元素由其类型声明，后面跟着 `{ }`
+* 元素可以有属性，形式如 `name: value`
+* QML 文档内的任意元素可通过其 `id` （一个没有引号包裹的标识符）访问。
+* 元素可以嵌套，意味着父元素可以有子元素。父元素可通过 `parent` 关键字访问
 
-With the `import` statement you import a QML module by name. In Qt5 you had to specify a major and minor version (e.g. `2.15`), this is now optional in Qt6. For the book content we drop this optional version number as normally you automatically want to choose the newest version available from your selected Qt Kit.
+通过 `import` 语句，你通过名称导入了一个 QML 模块。在 Qt5 中，需要指定主要版本和次要版本，如 `2.15`，这在 Qt6 中是可选的。在本书中，我们抛弃了这个可选的版本号，因为你一般会使用所选的 Qt 套件的适配的最新版本。
 
-::: tip
-Often you want to access a particular element by id or a parent element using the `parent` keyword. So it’s good practice to name your root element “root” using `id: root`. Then you don’t have to think about how the root element is named in your QML document.
+::: tip 提示
+通常你希望使用 id 或 `parent` 关键字访问特定元素。所以，利用 `id: root`，将根元素命名为 "root" 是个不错的选择。后续，你就无需考虑 QML 文档中，根元素的名称了。
 :::
 
-::: tip
-You can run the example using the Qt Quick runtime from the command line from your OS like this:
+::: tip 提示
+可以使用 Qt Quick 运行时从命令行运行实例，如下所示：
 
     $ $QTDIR/bin/qml RectangleExample.qml
 
-Where you need to replace the `$QTDIR` to the path to your Qt installation. The `qml` executable initializes the Qt Quick runtime and interprets the provided QML file.
+需要将 `$QTDIR` 替换成您的 Qt 安装路径。`qml` 可执行程序初始化了 Qt Quick 运行环境，解释执行提供的 QML 文件。
 
-In Qt Creator, you can open the corresponding project file and run the document  `RectangleExample.qml`.
+在 Qt Creator 中，你可以打开对应的工程，运行 `RectangleExample.qml`。
 :::
 
-## Properties
+## 属性
 
-Elements are declared by using their element name but are defined by using their properties or by creating custom properties. A property is a simple key-value pair, e.g. `width: 100`, `text: 'Greetings'`, `color: '#FF0000'`. A property has a well-defined type and can have an initial value.
+元素由其名称声明，由属性和自定义属性定义。一个属性就是一个键值对，如 `width: 100`，`text: 'Greetings'`，`color: '#FF0000'`。属性会指定类型，且可以拥有初值。
 
 ```qml
 Text {
-    // (1) identifier
+    // (1) 标识符
     id: thisLabel
 
-    // (2) set x- and y-position
+    // (2) 设置 x y 坐标
     x: 24; y: 16
 
-    // (3) bind height to 2 * width
+    // (3) 绑定高度为 2 * width
     height: 2 * width
 
-    // (4) custom property
+    // (4) 自定义属性
     property int times: 24
 
-    // (5) property alias
+    // (5) 属性别名
     property alias anotherTimes: thisLabel.times
 
-    // (6) set text appended by value
+    // (6) 设置文本拼接内容
     text: "Greetings " + times
 
-    // (7) font is a grouped property
+    // (7) 字体是个分组属性
     font.family: "Ubuntu"
     font.pixelSize: 24
 
-    // (8) KeyNavigation is an attached property
+    // (8) KeyNavigation 是个附件属性
     KeyNavigation.tab: otherLabel
 
-    // (9) signal handler for property changes
+    // (9) 属性变更时的信号处理
     onHeightChanged: console.log('height:', height)
 
-    // focus is need to receive key events
+    // 需要焦点接收键盘事件
     focus: true
 
-    // change color based on focus value
+    // 根据 focus 的值改变颜色
     color: focus ? "red" : "black"
 }
 ```
 
-Let’s go through the different features of properties:
+让我们看看属性的不同特性：
 
 
-* **(1)** `id` is a very special property-like value, it is used to reference elements inside a QML file (called “document” in QML). The `id` is not a string type but rather an identifier and part of the QML syntax. An `id` needs to be unique inside a document and it can’t be reset to a different value, nor may it be queried. (It behaves much like a reference in the C++ world.)
+* **(1)** `id` 是个非常特殊的类属性值，用于在 QML 文件（称为 "文档"）内引用元素。`id` 不是字符串类型的，而是一个标识符，是 QML 语言的一部分。文档内的 `id` 不能重复，且无法修改和查询（行为类似 C++ 中的引用）。
 
-* **(2)** A property can be set to a value, depending on its type. If no value is given for a property, an initial value will be chosen. You need to consult the documentation of the particular element for more information about the initial value of a property.
+* **(2)** 属性可以根据其类型赋予其值。若没有赋值，则会自动选择初值。你需要查询文档中该元素的属性初值相关的内容。
 
-* **(3)** A property can depend on one or many other properties. This is called *binding*. A bound property is updated when its dependent properties change. It works like a contract, in this case, the `height` should always be two times the `width`.
+* **(3)** 属性值可以依赖一个或多个其它属性，这被称为 *绑定*。绑定属性会在其依赖属性修改时更新。就像签了合同，在本例中，`height` 总是两倍的 `width`。
 
 * **(4)** Adding new properties to an element is done using the `property` qualifier followed by the type, the name and the optional initial value (`property <type> <name> : <value>`). If no initial value is given, a default initial value is chosen.
 

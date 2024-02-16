@@ -33,18 +33,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import QtQuick
 
-// The root element is the Rectangle
+// 根元素是 Rectangle
 Rectangle {
-    // name this element root
+    // 命名此元素为 root
     id: root
 
-    // properties: <name>: <value>
+    // 属性: <name>: <value>
     width: 120; height: 240
 
-    // color property
+    // 颜色属性
     color: "#4A4A4A"
 
-    // Declare a nested element (child of root)
+    // 申明嵌套元素（root 的儿子）
     Image {
         id: triangle
 
@@ -54,7 +54,7 @@ Rectangle {
         source: 'assets/triangle_red.png'
     }
 
-    // Another child of root
+    // root 元素的另一个儿子
     Text {
         // un-named element
 
