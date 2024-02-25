@@ -56,12 +56,12 @@ Rectangle {
 
     // root 元素的另一个儿子
     Text {
-        // un-named element
+        // 未命名元素
 
-        // reference element by id
+        // 通过 id 引用元素
         y: triangle.y + triangle.height + 20
 
-        // reference root element
+        // 引用根元素
         width: root.width
 
         color: 'white'

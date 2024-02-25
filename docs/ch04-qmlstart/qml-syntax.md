@@ -89,53 +89,51 @@ Text {
 
 * **(3)** 属性值可以依赖一个或多个其它属性，这被称为 *绑定*。绑定属性会在其依赖属性修改时更新。就像签了合同，在本例中，`height` 总是两倍的 `width`。
 
-* **(4)** Adding new properties to an element is done using the `property` qualifier followed by the type, the name and the optional initial value (`property <type> <name> : <value>`). If no initial value is given, a default initial value is chosen.
+* **(4)** 可以通过修饰符 `property`，名称和可选的初值(`property <type> <name> : <value>`)为元素添加新属性。若未指定初值，则会选择默认初值。
 
 ::: tip 提示
-You can also declare one property to be the default property using `default` keyword. If another element is created inside the element and not explicitly bound to a property, it is bound to the default property. For instance, This is used when you add child elements. The child elements are added automatically to the default property `children` of type list if they are visible elements.
+也可通过关键字 `default` 将某个属性申明为默认属性。若在元素内创建了另一个元素，且未显式地绑定至一个属性，它将绑定至默认属性。举例来说，这通常在你添加子元素时使用。可见子元素会自动加入列表类型的默认属性 `children`。
 :::
 
-* **(5)** Another important way of declaring properties is using the `alias` keyword (`property alias <name>: <reference>`). The `alias` keyword allows us to forward a property of an object or an object itself from within the type to an outer scope. We will use this technique later when defining components to export the inner properties or element ids to the root level. A property alias does not need a type, it uses the type of the referenced property or object.
+* **(5)** 另一种申明属性的重要方式是通过 `alias` 关键字(`property alias <name>: <reference>`)。`alias` 关键字允许我们将对象的属性或对象本身的从类型内转发到外部作用域。稍后在定义组件时，我们将使用这种技术将内部属性或元素id导出到根级别。属性别名无需类型，它直接使用其指向的属性或对象的类型。
 
-* **(6)** The `text` property depends on the custom property `times` of type int. The `int` based value is automatically converted to a `string` type. The expression itself is another example of binding and results in the text being updated every time the `times` property changes.
+* **(6)** `text` 属性依赖 int 类型的自定义属性 `times`。该 `int` 类型的值会自动转换为 `string` 类型。该表达式也是另一个例子，每次 `times` 属性变更，都会使得 text 被更新。
 
-
-* **(7)** Some properties are grouped properties. This feature is used when a property is more structured and related properties should be grouped together. Another way of writing grouped properties is `font { family: "Ubuntu"; pixelSize: 24 }`.
-
-
-* **(8)** Some properties belong to the element class itself. This is done for global settings elements which appear only once in the application (e.g. keyboard input). The writing is `<Element>.<property>: <value>`.
+* **(7)** 某些属性是分组属性。该特性用于当某个属性更加结构化，且需要分组打包时。另一种书写分组属性的方法是 `font { family: "Ubuntu"; pixelSize: 24 }`。
 
 
-* **(9)** For every property, you can provide a signal handler. This handler is called after the property changes. For example, here we want to be notified whenever the height changes and use the built-in console to log a message to the system.
+* **(8)** 一些属性属于元素所属类。全局设置元素只在应用程序中出现一次（如，键盘输入）。写法是 `<Element>.<property>: <value>`。
 
-::: warning
-An element id should only be used to reference elements inside your document (e.g. the current file). QML provides a mechanism called "dynamic scoping", where documents loaded later on overwrite the element IDs from documents loaded earlier. This makes it possible to reference element IDs from previously loaded documents if they have not yet been overwritten. It’s like creating global variables. Unfortunately, this frequently leads to really bad code in practice, where the program depends on the order of execution. Unfortunately, this can’t be turned off. Please only use this with care; or, even better, don’t use this mechanism at all. It’s better to export the element you want to provide to the outside world using properties on the root element of your document.
+
+* **(9)** 对于每个属性，你可提供一个信号处理器。该处理器会在属性值修改后被调用。例如，我们期望在高度变更时收到通知，使用内置的控制台打印日志。、
+
+::: warning 警告
+元素 id 应仅被用于在文档内引用元素（即当前文件）。QML 提供了称为“动态作用域”的机制，稍候加载的文件会覆盖以前加载的文件的元素 ID。这使得在后续后加载的文件中引用之前未被覆盖的 id 称为可能。就像创建了全局变量。不幸地是，实践中这通常导致屎山代码，因为程序依赖其执行顺序。更糟的是，无法关闭该机制。请小心谨慎地使用此机制，或者，干脆别用。在文件的根元素上导出需要提供给外部作用域的元素是个更好的办法。
 :::
 
-## Scripting
+## 脚本
 
-QML and JavaScript (also known as ECMAScript) are best friends. In the *JavaScript* chapter we will go into more detail on this symbiosis. Currently, we just want to make you aware of this relationship.
+QML 和 JavaScript（也被称为 ECMAScript）是最佳拍档。在 *JavaScript* 章节，我们会更加深入这种共生关系。目前，你只需知道这种关系的存在。
 
 <<< @/docs/ch04-qmlstart/src/concepts/ScriptingExample.qml#text
 
-* **(1)** The text changed handler `onTextChanged` prints the current text every time the text changed due to the space bar being pressed. As we use a parameter injected by the signal, we need to use the function syntax here. It's also possible to use an arrow function (`(text) => {}`), but we feel `function(text) {}` is more readable.
+* **(1)** 每次空格键被按下时，监听文本变更的处理器 `onTextChanged` 都会打印文本。因为我们需要使用信号注入的参数，所以这里得用函数语法。也可用箭头函数(`(text) => {}`)，但我们觉得 `function(text) {}` 更具可读性。
 
 
-* **(2)** When the text element receives the space key (because the user pressed the space bar on the keyboard) we call a JavaScript function `increment()`.
+* **(2)** 当 text 元素收到空格键（因为用户在键盘上按下了空格键），会调用 JavaScript 函数 `increment()`。
 
 
-* **(3)** Definition of a JavaScript function in the form of `function <name>(<parameters>) { ... }`, which increments our counter `spacePresses`. Every time `spacePresses` is incremented, bound properties will also be updated.
+* **(3)** 定义形如 `function <name>(<parameters>) { ... }` 的 JavaScript 函数会增加计数器 `spacePresses`。每次 `spacePresses` 增加后，绑定属性也会被更新。
 
-## Binding
+## 绑定
 
-The difference between the QML `:` (binding) and the JavaScript `=` (assignment) is that the binding is a contract and keeps true over the lifetime of the binding, whereas the JavaScript assignment (`=`) is a one time value assignment.
+QML 的 `:` (绑定) 和 JavaScript 的 `=` (赋值) 的区别是，绑定是一个合约，且在绑定周期内一直生效，而 JavaScript 的赋值(`=`)仅是单次操作。
 
-The lifetime of a binding ends when a new binding is set on the property or even when a JavaScript value is assigned to the property. For example, a key handler setting the text property to an empty string would destroy our increment display:
+为属性设置新绑定或将一个 JavaScript 值赋予该属性都会终止绑定的生命周期。例如，一个将 text 属性设置为空字符串的按键处理器会停止增长显示：
 
 <<< @/docs/ch04-qmlstart/src/concepts/ScriptingExample.qml#clear-binding{2}
 
+按下 escape 键后，再按空格键将不会更新文本显示，因为 `text` 属性之前的绑定 (*text: “Space pressed: ” + spacePresses + ” times”*) 被破坏了。
 
-After pressing escape, pressing the space bar will not update the display anymore, as the previous binding of the `text` property (*text: “Space pressed: ” + spacePresses + ” times”*) was destroyed.
-
-When you have conflicting strategies to change a property as in this case (text updated by a change to a property increment via a binding and text cleared by a JavaScript assignment) then you can’t use bindings! You need to use assignment on both property change paths as the binding will be destroyed by the assignment (broken contract!).
+当你有如本例中冲突的策略去修改属性时（通过绑定更新文本和通过 JavaScipt 赋值清空文本），你就不能用绑定！你应该在两个属性变更时都使用赋值，因为绑定关系会被赋值破坏。
 

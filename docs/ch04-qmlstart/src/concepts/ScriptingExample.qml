@@ -43,32 +43,32 @@ Rectangle {
 
         x: 24; y: 24
 
-        // custom counter property for space presses
+        // 用于记录按下几次空格的自定义属性
         property int spacePresses: 0
 
         text: "Space pressed: " + spacePresses + " times"
 
-        // (1) handler for text changes. Need to use function to capture parameters
+        // (1) 文本变更处理器。需要用函数捕获参数
         onTextChanged: function(text) { 
             console.log("text changed to:", text)
         }
 
-        // need focus to receive key events
+        // 需要焦点接收键盘事件
         focus: true
 
-        // (2) handler with some JS
+        // (2) 包含 JS 代码的处理器
         Keys.onSpacePressed: {
             increment()
         }
 
-        // clear the text on escape
+        // 按下 escape 时清空文本
         // #region clear-binding
         Keys.onEscapePressed: {
             label.text = ''
         }
         // #endregion clear-binding
 
-        // (3) a JS function
+        // (3) 一个 JS 函数
         function increment() {
             spacePresses = spacePresses + 1
         }
