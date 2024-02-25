@@ -37,22 +37,22 @@ QtQuick --> QtQuickControls
 
 ## Qt 附加模块
 
-除了基础模块外，Qt 还提供了用于特殊目的的附件模块。很多附件模块是功能完备的，或者为了向前兼容而存在，又或者只用于特定平台。以下是部分附加模块的列表，完整列表参见 [Qt 文档附件模块列表](https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons)。
+除了基础模块外，Qt 还提供了用于特殊目的的附加模块。很多附加模块是功能完备的，或者为了向前兼容而存在，又或者只用于特定平台。以下是部分附加模块的列表，完整列表参见 [Qt 文档附件模块列表](https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons)。
 
-* **Network**: Qt Bluetooth（蓝牙） / Qt Network Authorization（网络认证）
-* **UI Components**: Qt Quick 3D / Qt Quick Timeline / Qt Charts（图表） / Qt Data Visualization（数据可视化） / Qt Lottie Animation / Qt Virtual Keyboard（虚拟键盘）
-* **Graphics**: Qt 3D / Qt Image Formats / Qt OpenGL / Qt Shader Tools / Qt SVG / Qt Wayland Compositor
-* **Helper**: Qt 5 Core Compatibility APIs（核心兼容API） / Qt Concurrent（协程） / Qt Help（帮助） / Qt Print Support（打印支持） / Qt Quick Widgets / Qt SCXML / Qt SQL / Qt State Machine / Qt UI Tools / Qt XML
+* **网络**: Qt Bluetooth（蓝牙） / Qt Network Authorization（网络认证）
+* **UI 组件**: Qt Quick 3D / Qt Quick Timeline / Qt Charts（图表） / Qt Data Visualization（数据可视化） / Qt Lottie Animation / Qt Virtual Keyboard（虚拟键盘）
+* **图形**: Qt 3D / Qt Image Formats / Qt OpenGL / Qt Shader Tools / Qt SVG / Qt Wayland Compositor
+* **助手类**: Qt 5 Core Compatibility APIs（核心兼容API） / Qt Concurrent（协程） / Qt Help（帮助） / Qt Print Support（打印支持） / Qt Quick Widgets / Qt SCXML / Qt SQL / Qt State Machine / Qt UI Tools / Qt XML
 
 ::: tip 提示
-因为这些模块不是发行版的一部分，所有每个模块的状态取决于贡献者的活跃度和测试程度。
+因为这些模块不是发行版的一部分，所以每个模块的状态取决于贡献者的活跃度和测试程度。
 :::
 
 ## 支持的平台
 
-Qt 支持主要的桌面和嵌入式平台在内的大量平台。必要的话，现在利用 Qt 平台的抽象讲其移动到您的平台比以往任何时候都简单。
+Qt 支持主流的桌面和嵌入式平台在内的大量平台。必要的话，现在利用 Qt 平台的抽象将其移植到您的平台比以往任何时候都简单。
 
-在任意平台上测试 Qt 6 都是一项耗时的工作。所有 Qt 工程挑选了部分平台作为常用平台。在这些平台上，Qt 通过完整的系统测试确保最佳的代码质量。不过，请牢记，没有代码不会出错。
+在任意平台上测试 Qt 6 都是一项耗时的工作。所以 Qt 工程挑选了部分平台作为常用平台。在这些平台上，Qt 通过完整的系统测试确保最佳的代码质量。不过，请牢记，没有代码不会出错。
 
 # Qt 工程
 
