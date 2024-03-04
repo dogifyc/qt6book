@@ -38,7 +38,7 @@ Rectangle {
     height: 120
 
     // #region button
-    Rectangle { // our inlined button ui
+    Rectangle { // 我们的行内按钮 ui
         id: button
         x: 12; y: 12
         width: 116; height: 26
@@ -56,7 +56,7 @@ Rectangle {
         }
     }
 
-    Text { // text changes when button was clicked
+    Text { // 当点击按钮时修改文本
         id: status
         x: 12; y: 76
         width: 116; height: 26

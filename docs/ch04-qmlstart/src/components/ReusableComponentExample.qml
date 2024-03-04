@@ -38,7 +38,7 @@ Rectangle {
     height: 120
 
     // #region reusability
-    Button { // our Button component
+    Button { // 我们的按钮组件
         id: button
         x: 12; y: 12
         text: "Start"
@@ -47,7 +47,7 @@ Rectangle {
         }
     }
 
-    Text { // text changes when button was clicked
+    Text { // 当点击按钮时，文本会修改
         id: status
         x: 12; y: 76
         width: 116; height: 26

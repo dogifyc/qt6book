@@ -1,44 +1,44 @@
-# Components
+# 组件
 
-A component is a reusable element. QML provides different ways to create components. Currently, we will look only at the simplest form - a file-based component. A file-based component is created by placing a QML element in a file and giving the file an element name (e.g. `Button.qml`). You can use the component like every other element from the Qt Quick module. In our case, you would use this in your code as `Button { ... }`.
+组件是可复用的元素。QML 提供了创建组件的多种方式。目前，我们仅专注于最简单的形式——基于文件的组件。创建基于文件的组件是通过将 QML 元素放入一个文件，且将文件名命名为元素（如 `Button.qml`）。你可像使用来自 Qt Quick 模块的其它元素一样的使用此组件。在我们的实例中，你的代码应用像这样 `Button { ... }`。
 
-For example, let’s create a rectangle containing a text component and a mouse area. This resembles a simple button and doesn’t need to be more complicated for our purposes.
+举例来说，我们先创建一个矩形区域，其包含了一个文本组件和鼠标区域。这看起来像个按钮，对于我们来说，这就够了。
 
 <<< @/docs/ch04-qmlstart/src/components/InlinedComponentExample.qml#button
 
-The UI will look similar to this. In the first image, the UI is in its initial state, and in the second image the button has been clicked.
+UI 看起来如下。在第一张图中，UI 是其初始状态，第二张图中，按钮被点击了。
 
 ![](./assets/button_waiting.png)
 
 ![](./assets/button_clicked.png)
 
 
-Now our task is to extract the button UI into a reusable component. For this, we should think about a possible API for our button. You can do this by imagining how someone else should use your button. Here’s what I came up with:
+现在我们的任务将按钮 UI 提取成可复用的组件。为此，我们需先考虑按钮可能的 API。想象别人应该如何使用该按钮。这是我能想到的：
 
 ```qml
-// minimal API for a button
+// 一个按钮的最小 API
 Button {
     text: "Click Me"
-    onClicked: { /* do something */ }
+    onClicked: { /* 做点啥 */ }
 }
 ```
 
-I would like to set the text using a `text` property and to implement my own click handler. Also, I would expect the button to have a sensible initial size, which I can overwrite (e.g. with `width: 240` for example).
+可以通过 `text` 属性修改文本，且实现自定义点击处理器。当然，也可以给按钮一个预设的合理大小，便于后续覆盖（本例中使用了 `width: 240`）。
 
-To achieve this we create a `Button.qml` file and copy our button UI inside. Additionally, we need to export the properties a user might want to change at the root level.
+为此，我们创建了一个 `Button.qml` 文件，且将按钮代码复制到里面。此外，我们需要在根级别导出用户可能要修改的属性。
 
 <<< @/docs/ch04-qmlstart/src/components/Button.qml#global
 
-We have exported the text property and the clicked signal at the root level. Typically we name our root element root to make referencing it easier. We use the `alias` feature of QML, which is a way to export properties inside nested QML elements to the root level and make this available for the outside world. It is important to know that only the root level properties can be accessed from outside this file by other components.
+我们已在根级别导出文本属性和点击信号。一般来说，我们将根元素命名为 root，便于后续引用。我们使用了 QML 提供的 `alias` 特性，这是一种在 QML 元素内部根级别导出属性的方法，这使得这些属性对外部可用。必须明确，只有根级别的属性可被文件外的其它组件访问到。
 
-To use our new `Button` element we can simply declare it in our file. So the earlier example will become a little bit simplified.
+要使用我们的新 `Button` 元素，可用简单地在文件内声明它。所以，前面的例子可用再度简化。
 
 <<< @/docs/ch04-qmlstart/src/components/ReusableComponentExample.qml#reusability
 
-Now you can use as many buttons as you like in your UI by just using `Button { ... }`. A real button could be more complex, e.g. providing feedback when clicked or showing a nicer decoration.
+现在，你可用通过 `Button { ... }` 在 UI 中使用任意的按钮。一个实际的按钮会更加复杂，例如，提供点击反馈或展示装饰。
 
-::: tip
-If you want to, you could even go a step further and use an `Item` as a root element. This prevents users from changing the color of the button we designed, and provides us with more control over the exported API. The target should be to export a minimal API. Practically, this means we would need to replace the root `Rectangle` with an `Item` and make the rectangle a nested element in the root item.
+::: tip 提示
+如果你想的话，可以更进一步，将 `Item` 作为根元素。这会阻止用户修改我们设计的按钮的颜色，且让我们更好的控制导出 API。目标是导出最少的 API。实际上，这意味着我们要将根元素  `Rectangle` 替换为 `Item`，并将原来的矩形元素嵌入新的根元素。
 
 ```qml
 Item {
@@ -58,5 +58,5 @@ Item {
 ```
 :::
 
-With this technique, it is easy to create a whole series of reusable components.
+通过此技术，创建整套的可复用组件变得很简单。
 
