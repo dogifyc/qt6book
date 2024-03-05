@@ -30,7 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // #region global
 // ClickableImage.qml
-// Simple image which can be clicked
+// 可被点击的简单图片
 
 import QtQuick
 

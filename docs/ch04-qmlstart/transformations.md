@@ -1,39 +1,38 @@
-## Simple Transformations
+## 简单变化
 
-A transformation manipulates the geometry of an object. QML Items can, in general, be translated, rotated and scaled. There is a simple form of these operations and a more advanced way.
+变化操作对象的几何形状。一般来说，QML 项目可以被转换，旋转和放大缩小。这些操作有简单方式和高级方式两种。
 
-Let’s start with the simple transformations. Here is our scene as our starting point.
+让我们从简单的变化开始。这将作为我们的学习的起点。
 
-A simple translation is done via changing the `x,y` position. A rotation is done using the `rotation` property. The value is provided in degrees (0 .. 360). A scaling is done using the `scale` property and a value <1 means the element is scaled down and `>1` means the element is scaled up. Rotation and scaling do not change an item's geometry: the `x,y` and `width/height` haven’t changed; only the painting instructions are transformed.
+简单的变化通过修改 `x,y` 坐标来实现。旋转通过 `rotation` 属性完成。该值的格式的角度（0.. 360）。缩小和放大通过 `scale` 属性完成，其值 <1 意味着缩小，`>1` 意味着放大。旋转和缩放不会修改元素的坐标和大小：`x,y` 和 `width/height` 不会改变，仅修改了绘图指令。
 
-Before we show off the example I would like to introduce a little helper: the `ClickableImage` element. The `ClickableImage` is just an image with a mouse area. This brings up a useful rule of thumb - if you have copied a chunk of code three times, extract it into a component.
+展示例子前，先看看这个：`ClickableImage` 元素。`ClickableImage` 是一个包含鼠标点击区域的图片。这提出了一个有用的经验法则 —— 如果你复制了一段代码三次，将其打包为组件。
 
 <<< @/docs/ch04-qmlstart/src/transformation/ClickableImage.qml#global
 
 ![](./assets/objects.png)
 
-
-We use our clickable image to present three objects (box, circle, triangle). Each object performs a simple transformation when clicked. Clicking the background will reset the scene.
+我们用可点击图片展示3个对象，方形，圆形和三角形。每个对象被点击时都会进行简单变化。点击背景将会重置场景。
 
 <<< @/docs/ch04-qmlstart/src/transformation/TransformationExample.qml#no-tests
 
 ![](./assets/objects_transformed.png)
 
-The circle increments the x-position on each click and the box will rotate on each click. The triangle will rotate and scale the image up on each click, to demonstrate a combined transformation. For the scaling and rotation operation we set `antialiasing: true` to enable anti-aliasing, which is switched off (same as the clipping property `clip`) for performance reasons.  In your own work, when you see some rasterized edges in your graphics, then you should probably switch smoothing on.
+每次点击原型会增加其 x 坐标，而每次点击放行会使其旋转。每次点击三角形会触发组合变化，旋转和放大。对于放大和旋转操作，我们设置了 `antialiasing: true`，起用了因为性能原因而关闭的抗锯齿功能（与裁剪属性 `clip` 相同）。当你在工作中看到图形里有些栅格化的边缘时，打开平滑开关可能是个不错的主意。
 
-::: tip
-To achieve better visual quality when scaling images, it is recommended to scale down instead of up. Scaling an image up with a larger scaling factor will result in scaling artifacts (blurred image). When scaling an image you should consider using ``smooth: true`` to enable the usage of a higher quality filter at the cost of performance.
+::: tip 提示
+为了在缩放图片时达到更佳的显示效果，建议仅做缩小操作，不要做放大操作。使用一个较大的放大系数放大图片会导致图片模糊不清。当缩放图片时，你需要考虑使用 `smooth: true` 牺牲性能，启用更高质量的过滤器。
 :::
 
-The background `MouseArea` covers the whole background and resets the object values.
+背景的 `MouseArea` 覆盖了整个背景图并重置了对象状态。
 
-::: tip
-Elements which appear earlier in the code have a lower stacking order (called z-order). If you click long enough on `circle` you will see it moves below `box`. The z-order can also be manipulated by the `z` property of an Item.
+::: tip 提示
+代码中先出现的元素在堆栈中的排序（称为 z 排序）更低。如果你多次点击 `circle`，你会看到它出现在了 `box` 之下。z 排序也可通过元素的 `z` 属性修改。
 
 ![](./assets/objects_overlap.png)
 
-This is because `box` appears later in the code. The same applies also to mouse areas. A mouse area later in the code will overlap (and thus grab the mouse events) of a mouse area earlier in the code.
+这是因为在代码中，`box` 在后面。鼠标区域也遵循相同的规则。代码中靠后的鼠标区域会与靠前的重叠，并捕捉鼠标事件。
 
-Please remember: *the order of elements in the document matters*.
+请牢记：*元素的顺序与其在文档中的顺序息息相关*。
 :::
 

@@ -35,23 +35,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import QtQuick
 
 Item {
-    // set width based on given background
+    // 宽高设置与所给背景图相同
     width: bg.width
     height: bg.height
 
-    Image { // nice background image
+    Image { // 不错的背景图
         id: bg
         source: "assets/background.png"
     }
 
     MouseArea {
         id: backgroundClicker
-        // needs to be before the images as order matters
-        // otherwise this mousearea would be before the other elements
-        // and consume the mouse events
+        // 需要放在图片之前，因为错误的顺序会导致该鼠标区域在其它元素之前，消费了点击事件
         anchors.fill: parent
         onClicked: {
-            // reset our little scene
+            // 重置小场景
             circle.x = 84
             box.rotation = 0
             triangle.rotation = 0
@@ -65,7 +63,7 @@ Item {
         source: "assets/circle_blue.png"
         antialiasing: true
         onClicked: {
-            // increase the x-position on click
+            // 点击时增加 x 坐标
             x += 20
         }
     }
@@ -76,7 +74,7 @@ Item {
         source: "assets/box_green.png"
         antialiasing: true
         onClicked: {
-            // increase the rotation on click
+            // 点击时增加旋转角度
             rotation += 15
         }
     }
@@ -87,7 +85,7 @@ Item {
         source: "assets/triangle_red.png"
         antialiasing: true
         onClicked: {
-            // several transformations
+            // 多个变化
             rotation += 15
             scale += 0.05
         }
