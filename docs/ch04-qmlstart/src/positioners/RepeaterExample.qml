@@ -39,7 +39,7 @@ DarkSquare {
     height: 252
     property variant colorArray: ["#00bde3", "#67c111", "#ea7025"]
 
-    Grid{
+    Grid {
         anchors.fill: parent
         anchors.margins: 8
         spacing: 4
