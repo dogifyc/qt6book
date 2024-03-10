@@ -1,10 +1,10 @@
-# Input Elements
+# 输入元素
 
-We have already used the `MouseArea` as a mouse input element. Next, we’ll focus on keyboard input. We start off with the text editing elements: `TextInput` and `TextEdit`.
+我们早已使用鼠标输入元素 `MouseArea`，接下来看看键盘输入。我们从文本编辑元素 `TextInput` 和 `TextEdit` 元素开始。
 
 ## TextInput
 
-`TextInput` allows the user to enter a line of text. The element supports input constraints such as `validator`, `inputMask`, and `echoMode`.
+`TextInput` 允许用户输入一行文本。该元素支持输入约束，如 `validator`，`inputMask` 和 `echoMode`。
 
 ```qml
 // textinput.qml
@@ -36,7 +36,7 @@ Rectangle {
 ![](./assets/textinput.png)
 
 
-The user can click inside a `TextInput` to change the focus. To support switching the focus by keyboard, we can use the `KeyNavigation` attached property.
+用户可点击 `TextInput` 内部获得焦点。要支持通过键盘切换焦点，可以使用附加属性 `KeyNavigation`。
 
 ```qml
 // textinput2.qml
@@ -66,12 +66,11 @@ Rectangle {
     }
 }
 ```
+附加属性 `KeyNavigation` 支持一些预设的导航键，按下导航键，可以在元素间切换焦点。
 
-The `KeyNavigation` attached property supports a preset of navigation keys where an element id is bound to switch focus on the given key press.
+文本输入元素除了闪烁的光标和输入的文本外没有任何视觉展示。为了让用户能将元素识别为输入元素，需要一些视觉装饰，例如，简单的矩形。若将 `TextInput` 放入其它元素，需要确保导出了要使用的主要元素。
 
-A text input element comes with no visual presentation beside a blinking cursor and the entered text. For the user to be able to recognize the element as an input element it needs some visual decoration; for example, a simple rectangle. When placing the `TextInput` inside an element you need make sure you export the major properties you want others to be able to access.
-
-We move this piece of code into our own component called `TLineEditV1` for reuse.
+为了复用，我们将这段代码移入了自定义组件 `TLineEditV1`。
 
 ```qml
 // TLineEditV1.qml
@@ -95,11 +94,11 @@ Rectangle {
 }
 ```
 
-::: tip
-If you want to export the `TextInput` completely, you can export the element by using `property alias input: input`. The first `input` is the property name, where the 2nd input is the element id.
+::: tip 提示
+若你想完全导出 `TextInput`，可以通过 `property alias input: input` 完成。第一个 `input` 是属性名称，第二个是元素名称。
 :::
 
-We then rewrite our `KeyNavigation` example with the new `TLineEditV1` component.
+随后我们用 `TLineEditV1` 组件重写了 `KeyNavigation` 实例。
 
 ```qml
 Rectangle {
@@ -117,11 +116,11 @@ Rectangle {
 
 ![](./assets/textinput3.png)
 
-Try the tab key for navigation. You will experience the focus does not change to `input2`. The simple use of `focus: true` is not sufficient. The problem is that when the focus was transferred to the `input2` element, the top-level item inside the `TlineEditV1` (our `Rectangle`) received focus, and did not forward the focus to the `TextInput`. To prevent this, QML offers the `FocusScope`.
+尝试按下 tab 键触发导航。你会发现焦点并未切换至 `input2`。只配置 `focus: true` 是不够的。问题是当焦点切给 `input2` 元素时，`TlineEditV1` 内的顶级元素（`Rectangle`）获得了焦点，并未将焦点转发给 `TextInput`。为了避免此问题，QML 提供了 `FocusScope`。
 
 ## FocusScope
 
-A focus scope declares that the last child element with `focus: true` receives the focus when the focus scope receives the focus. So it forwards the focus to the last focus-requesting child element. We will create a second version of our TLineEdit component called TLineEditV2, using a focus scope as the root element.
+焦点作用域内最后一个 `focus: true` 的子元素会获得焦点。所以它将焦点转发给最后一个请求焦点的子元素。我们会用焦点作用域创建第二版的 TLineEdit 组件，名为 TLineEditV2。
 
 ```qml
 // TLineEditV2.qml
@@ -149,7 +148,7 @@ FocusScope {
 }
 ```
 
-Our example now looks like this:
+我们的实例现在长这样：
 
 ```qml
 Rectangle {
@@ -165,11 +164,11 @@ Rectangle {
 }
 ```
 
-Pressing the tab key now successfully switches the focus between the 2 components and the correct child element inside the component is focused.
+现在按下 tab 键，能成功地在两个组件间正确切换，内部的子元素也能正确的获得焦点。
 
 ## TextEdit
 
-The `TextEdit` is very similar to `TextInput`, and supports a multi-line text edit field. It doesn’t have the text constraint properties, as this depends on querying the content size of the text (`contentHeight`, `contentWidth`). We also create our own component called `TTextEdit` to provide an editing background and use the focus scope for better focus forwarding.
+`TextEdit` 与 `TextInput` 十分类似，支持多行文本。它没有文本约束属性，因为着依赖于查询文本内容尺寸（`contentHeight`，`contentWidth`）。我们也创建了名为 `TTextEdit 的自定义组件，为编辑区域提供了背景色，使用了焦点作用域获得更好的焦点转发机制。
 
 ```qml
 // TTextEdit.qml
@@ -197,7 +196,7 @@ FocusScope {
 }
 ```
 
-You can use it like the `TLineEdit` component
+你可以像使用 `TLineEdit` 组件一样使用它
 
 ```qml
 // textedit.qml
@@ -221,9 +220,9 @@ Rectangle {
 
 ![](./assets/textedit.png)
 
-## Keys Element
+## Keys 元素
 
-The attached property `Keys` allows executing code based on certain key presses. For example, to move and scale a square, we can hook into the up, down, left and right keys to translate the element, and the plus and minus keys to scale the element.
+附加属性 `Keys` 允许在按下某个按键时执行代码。例如，为了移动，缩小或放大矩形，我们可以钩入上，下，左和右键，在按下这些键时变化元素，也可以钩入加和减键，在按下这些键时执行缩放元素操作。
 
 <<< @/docs/ch04-qmlstart/src/input/KeysExample.qml#global
 
