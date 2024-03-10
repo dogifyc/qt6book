@@ -1,15 +1,15 @@
-# Layout Items
+# 布局元素
 
-QML provides a flexible way to layout items using anchors. The concept of anchoring is fundamental to `Item`, and is available to all visual QML elements. Anchors act like a contract and are stronger than competing geometry changes. Anchors are expressions of relativeness; you always need a related element to anchor with.
+QML 提供了一种灵活的方式来使用锚来布局元素。锚是 `Item` 的基本概念，对所有可见 QML 元素可用。锚的行为类似合约，比直接计算坐标变更更强大。锚是相对关系的表达式；锚总是要标定一个相对元素。
 
 ![](./assets/anchors.png)
 
-An element has 6 major anchor lines (`top`, `bottom`, `left`, `right`, `horizontalCenter`, `verticalCenter`). Additionally, there is the `baseline` anchor for text in `Text` elements. Each anchor line comes with an offset. In the case of the `top`, `bottom`, `left`, and `right` anchors, they are called margins. For `horizontalCenter`, `verticalCenter` and `baseline` they are called offsets.
+每个元素有 6 个主要的锚线（`top` 顶部, `bottom` 底部, `left` 左侧, `right` 右侧, `horizontalCenter` 水平中线, `verticalCenter`垂直中线）。此外，`Text` 元素还有一个 `baseline` 锚线。每个锚线均提供了偏移。`top`，`bottom`，`left`，和 `right` 锚的偏移又被称为边距。`horizontalCenter`，`verticalCenter` 和 `baseline` 的偏移就叫偏移。
 
 ![](./assets/anchorgrid.png)
 
 
-* **(1)** An element fills a parent element.
+* **(1)** 子元素填充父元素
 
     ```qml
     GreenSquare {
@@ -24,7 +24,7 @@ An element has 6 major anchor lines (`top`, `bottom`, `left`, `right`, `horizont
     
 
 
-* **(2)** An element is left aligned to the parent.
+* **(2)** 子元素左对齐父元素
 
     ```qml
     GreenSquare {
@@ -40,7 +40,7 @@ An element has 6 major anchor lines (`top`, `bottom`, `left`, `right`, `horizont
 
 
 
-* **(3)** An element's left side is aligned to the parent’s right side.
+* **(3)** 子元素左侧与父元素右侧对齐
 
     ```qml
     GreenSquare {
@@ -54,7 +54,7 @@ An element has 6 major anchor lines (`top`, `bottom`, `left`, `right`, `horizont
 
 
 
-* **(4)** Center-aligned elements. `Blue1` is horizontally centered on the parent. `Blue2` is also horizontally centered, but on `Blue1`, and its top is aligned to the `Blue1` bottom line.
+* **(4)** 居中对齐的元素。`Blue1` 相对父元素水平居中。`Blue2` 的也是水平居中的，但是是相对 `Blue1` 的，且其顶部与 `Blue` 的底部锚线对齐。
 
     ```qml
     GreenSquare {
@@ -77,7 +77,7 @@ An element has 6 major anchor lines (`top`, `bottom`, `left`, `right`, `horizont
 
 
 
-* **(5)** An element is centered on a parent element
+* **(5)** 子元素居中于父元素
 
     ```qml
     GreenSquare {
@@ -91,7 +91,7 @@ An element has 6 major anchor lines (`top`, `bottom`, `left`, `right`, `horizont
 
 
 
-* **(6)** An element is centered with a left-offset on a parent element using horizontal and vertical center lines
+* **(6)** 子元素的水平中线，垂直中线分别与父元素的水平中线，垂直中线分别对齐，水平中线有向左的相对偏移。
 
     ```qml
     GreenSquare {
@@ -105,7 +105,7 @@ An element has 6 major anchor lines (`top`, `bottom`, `left`, `right`, `horizont
     }
     ```
 
-## Hidden Gems
+## 彩蛋
 
-Our squares have been magically enhanced to enable dragging. Try the example and drag around some squares. You will see that (1) can’t be dragged as it’s anchored on all sides (although you can drag the parent of (1), as it’s not anchored at all). (2) can be vertically dragged, as only the left side is anchored. The same applies to (3). (4) can only be dragged vertically, as both squares are horizontally centered. (5) is centered on the parent, and as such, can’t be dragged. The same applies to (6). Dragging an element means changing its `x,y` position. As anchoring is stronger than setting the `x,y` properties, dragging is restricted by the anchored lines. We will see this effect later when we discuss animations.
+上方的矩形被神奇地增强了，允许拖拽。(1) 中的子元素无法拖拽，因为其锚定了所有的锚线（虽然你可以拖动 (1) 中的父元素，因为它没有锚定的元素）。(2) 可被垂直拖动，因为它只有左侧锚线锚定了。(3) 也类似。(4) 中的两个子元素只能被垂直拖动，因为它们被水平居中了。(5) 中的子元素中心对齐了，所以无法被拖动。(6) 同 (5)。拖动元素意味着改变其 `x,y` 坐标。由于锚定比设置 `x,y` 属性更强，因此拖动受到锚定线的限制。后续我们讨论动画时会看到这种影响。
 
