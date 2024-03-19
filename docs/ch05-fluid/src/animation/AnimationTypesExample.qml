@@ -74,7 +74,7 @@ Item {
         }
 
         onClicked: y = 40
-        // random y on each click
+        // 每次点击产生随机的 y
         // onClicked: y = 40 + Math.random() * (205-40)
     }
     // #endregion behavior-on

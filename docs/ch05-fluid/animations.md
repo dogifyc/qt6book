@@ -1,144 +1,144 @@
-# Animations
+# 动画
 
-Animations are applied to property changes. An animation defines the interpolation curve from one value to another value when a property value changes. These animation curves create smooth transitions from one value to another. 
+动画被应用于属性变更期间。一个动画定义了属性变化时，从一个值变到另一个值的缓动曲线。这些动画曲线创建了从一个值到另一个值的平滑过渡。
 
-An animation is defined by a series of target properties to be animated, an easing curve for the interpolation curve, and a duration. All animations in Qt Quick are controlled by the same timer and are therefore synchronized. This improves the performance and visual quality of animations.
+一个动画由一些动态属性，缓动曲线，时长组成。Qt Quick 中的所有动画都由同一个计时器控制，因此是同步的。这提升了动画性能和质量。
 
-::: tip Animations control how properties change using value interpolation
+::: tip 动画通过修改属性值控制属性的变化
 
-This is a fundamental concept. QML is based on elements, properties, and scripting. Every element provides dozens of properties, each property is waiting to get animated by you. In the book, you will see this is a spectacular playing field. 
+这是一条基本原则。QML 基于元素，属性和脚本。每个元素都提供了几十个属性，每个属性都能被动画。在本书中，你会看到这个壮观的竞技场。
 
-You will catch yourself looking at some animations and just admiring their beauty, and your creative genius, too. Please remember then: *animations control property changes and every element has dozens of properties at your disposal*.
+你可以看看一些动画，鉴赏它们，或者发挥你的创造力。请牢记：*动画控制属性变更，每个元素都有几十个属性受您控制*。
 
-**Unlock the power!**
+**释放力量吧!**
 :::
 
 ![](./assets/animation_sequence.png)
 
 <<< @/docs/ch05-fluid/src/animation/AnimationExample.qml#global
 
-The example above shows a simple animation applied on the `x` and `rotation` properties. Each animation has a duration of 4000 milliseconds (msec). The animation on `x` moves the x-coordinate from the object gradually over to 240px. The animation on rotation runs from the current angle to 360 degrees. Both animations run in parallel and are started when the `MouseArea` is clicked.
+以上实例展示了一个针对 `x` 和 `rotation` 属性的简单动画。每个动画耗时 4000 毫秒。该动画作用于 `x`，将其横坐标渐渐移至 240 px。该动画也作用于角度属性，从当前角度转至 360 度。两个动画是并行运行的，且在点击 `MouseArea` 后开始的。
 
-You can play around with the animation by changing the `to` and `duration` properties, or you could add another animation (for example, on the `opacity` or even the `scale`). **Combining these it could look like the object is disappearing into deep space. Try it out!**
+你可以通过修改 `to` 和 `duration` 属性来处理动画，也可添加新的动画（例如，`opacity` 或 `scale`）。**这些组合在一起可以使得对象慢慢消失在深空！**
 
-## Animation Elements
+## 动画元素
 
-There are several types of animation elements, each optimized for a specific use case. Here is a list of the most prominent animations:
-
-
-* `PropertyAnimation` - Animates changes in property values
-
-* `NumberAnimation` - Animates changes in qreal-type values
-
-* `ColorAnimation` - Animates changes in color values
-
-* `RotationAnimation` - Animates changes in rotation values
-
-Besides these basic and widely used animation elements, Qt Quick also provides more specialized animations for specific use cases:
+这里有好几种动画类型，每种都针对特定的用例优化。这是一份重要动画的列表：
 
 
-* `PauseAnimation` - Provides a pause for an animation
+* `PropertyAnimation` - 针对属性值的动态修改
 
-* `SequentialAnimation` - Allows animations to be run sequentially
+* `NumberAnimation` - 针对实数类型的动态修改
 
-* `ParallelAnimation` - Allows animations to be run in parallel
+* `ColorAnimation` - 针对颜色的动态修改
 
-* `AnchorAnimation` - Animates changes in anchor values
+* `RotationAnimation` - 针对旋转角度的动态修改
 
-* `ParentAnimation` - Animates changes in parent values
-
-* `SmoothedAnimation` - Allows a property to smoothly track a value
-
-* `SpringAnimation` - Allows a property to track a value in a spring-like motion
-
-* `PathAnimation` - Animates an item alongside a path
-
-* `Vector3dAnimation` - Animates changes in QVector3d values
-
-Later we will learn how to create a sequence of animations. While working on more complex animations, there is sometimes a need to change a property or to run a script during an ongoing animation. For this Qt Quick offers the action elements, which can be used everywhere where the other animation elements can be used:
+除了这些广泛使用的基础动画元素，Qt Quick 还提供了更多针对特殊用例的动画：
 
 
-* `PropertyAction` - Specifies immediate property changes during animation
+* `PauseAnimation` - 允许暂停动画
 
-* `ScriptAction` - Defines scripts to be run during an animation
+* `SequentialAnimation` - 允许依次执行动画
 
-The major animation types will be discussed in this chapter using small, focused examples.
+* `ParallelAnimation` - 允许并行运行动画
 
-## Applying Animations
+* `AnchorAnimation` - 针对锚值得动态修改
 
-Animation can be applied in several ways:
+* `ParentAnimation` - 针对父值的动态修改
+
+* `SmoothedAnimation` - 允许属性值动态追踪一个值
+
+* `SpringAnimation` - 允许属性值像弹簧一样追踪一个值
+
+* `PathAnimation` - 元素沿一条路径动态前进
+
+* `Vector3dAnimation` - 以 QVector3d 值执行动画
+
+稍后我们会学习如何创建动画序列。在制作更复杂的动画时，有时需要在动画进行时修改属性或运行脚本。Qt Quick 为此提供了动作元素，只要动画元素能用的地方，动作元素就可用：
 
 
-* **Animation on property** - runs automatically after the element is fully loaded
+* `PropertyAction` - 在动画中立刻修改属性
 
-* **Behavior on property** - runs automatically when the property value changes
+* `ScriptAction` - 定义动画中运行的脚本
 
-* **Standalone Animation** - runs when the animation is explicitly started using `start()` or `running` is set to true (e.g. by a property binding)
+本章会用小而精的例子介绍主要的动画类型。
 
-*Later we will also see how animations can be used inside state transitions.*
+## 应用动画
 
-## Clickable Image V2
+有几种应用动画的方法：
 
-To demonstrate the usage of animations we reuse our ClickableImage component from an earlier chapter and extended it with a text element.
+
+* **Animation on property（属性动画）** - 元素完全加载后自动运行
+
+* **Behavior on property（属性行为）** - 属性值修改后自动运行
+
+* **Standalone Animation（独立动画）** - 显式地通过 `start()` 或 `running` 设置为 true 时运行动画（如，属性绑定）
+
+*后续我们会看看如何在 state 变化过程中使用动画。*
+
+## 点击图片 V2
+
+为了示范如何使用动画，我们重用了前文的 ClickableImage 组件，并为其添加了一个文本元素。
 
 <<< @/docs/ch05-fluid/src/animation/ClickableImageV2.qml#global
 
-To organize the element below the image we used a Column positioner and calculated the width and height based on the column’s childrenRect property. We exposed text and image source properties, and a clicked signal. We also wanted the text to be as wide as the image, and for it to wrap. We achieve the latter by using the Text element's `wrapMode` property.
+为了组织图片下面的元素，我们使用了 Column 定位器，并基于列的 childrenRect 属性计算了宽高。我们导出了 text，图片 souce 属性和点击信号。同时我们期望文本的宽度和图片一样，支持换行。利用文本元素的 `wrapMode` 属性，我们实现了换行功能。
 
-::: tip Parent/child geometry dependency
-Due to the inversion of the geometry-dependency (parent geometry depends on child geometry), we can’t set a `width`/`height` on the ClickableImageV2, as this will break our `width`/`height` binding. 
+::: tip 父级/子级 元素几何依赖
+因为翻转了几何依赖（父元素的形状依赖子元素），我们无法对 ClickableImageV2 设置 `width` 或 `height`，因为这会破坏绑定关系。
 
-You should prefer the child’s geometry to depend on the parent’s geometry if the item is more like a container for other items and should adapt to the parent's geometry.
+若父元素仅作为容器，且子元素会适应父元素，则更应该倾向于使子元素的形状依赖于父元素的形状。
 :::
 
-### The objects ascending
+### 依次排列的对象
 
 ![](./assets/animationtypes_start.png)
 
-The three objects are all at the same y-position (`y=200`). They all need to travel to `y=40`, each of them using a different method with different side-effects and features.
+这三个对象的 y 坐标是一样的(`y=200`)。都需要移动到 `y=40`，每个元素使用了不同的方法实现了此目的，每个方法有不同的副作用和特性。
 
-### First object
+### 第一个对象
 
-The first object travels using the `Animation on <property>` strategy. The animation starts immediately. 
+第一个对象使用 `Animation on <property>` 策略。该动画立刻启用。
 
 <<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#animation-on-property
 
-When an object is clicked, its y-position is reset to the start position, and this applies to all of the objects. On the first object, the reset does not have any effect as long as the animation is running. 
+当对象被点击时，其 y 坐标会被重置为起始状态，这点对三个对象都有效。对第一个对象来说，动画运行时，点击不会重置 y 坐标。
 
-This can be visually disturbing, as the y-position is set to a new value for a fraction of a second before the animation starts. *Such competing property changes should be avoided*.
+这在视觉上会令人不适，因为 y 坐标会在动画开始前的几分之一秒被设定为一个新值。*应该避免这种属性竞争*。
 
-### Second object
+### 第二个对象
 
-The second object travels using a `Behavior on` animation. This behavior tells the property it should animate each change in value. The behavior can be disabled by setting `enabled: false` on the `Behavior` element. 
+第二个对象使用 `Behavior on` 行为动画。该行为告诉属性值应该渐变。该行为可以设置 `Behavior` 的属性 `enabled: false` 来禁用。
 
 <<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#behavior-on
 
-The object will start traveling when you click it (its y-position is then set to 40). Another click has no influence, as the position is already set. 
+该对象会在被点击时开始移动（它的 y 坐标会被设置为 40）。重复点击不会重复设置，因为它的值已被设置了。
 
-You could try to use a random value (e.g. `40 + (Math.random() \* (205-40)`) for the y-position. You will see that the object will always animate to the new position and adapt its speed to match the 4 seconds to the destination defined by the duration of the animation.
+可以尝试为 y 坐标设置一个随机值（如 `40 + (Math.random() \* (205-40)`）。你会看到该对象总会动画至新未知，且因为动画的时长被设置为 4 秒，所以其会自动调整移动速度。
 
-### Third object
+### 第三个对象
 
-The third object uses a standalone animation. The animation is defined as its own element and can be almost anywhere in the document. 
+第三个对象使用了独立动画。该动画作用在元素上，几乎可出现在文档内的任意位置。
 
 <<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#standalone
 
-The click will start the animation using the animation's `start()` function. Each animation has start(), stop(), resume(), and restart() functions. The animation itself contains much more information than the other animation types earlier. 
+点击动作会通过 `start()` 函数启动动画。每个动画都有 start()，resume() 和 restart() 函数。此种动画包含了前文所提的其它动画更多的功能。
 
-We need to define the `target`, which is the element to be animated, along with the names of the properties that we want to animate. We also need to define a `to` value, and, in this case, a `from` value, which allows a restart of the animation.
+我们需要通过 `target` 属性定义动画的目标元素和需要动画的属性。本例中，还需要定义一个 `to` 值和 `from` 值，这将允许重启动画。
 
 ![](./assets/animationtypes.png)
 
-A click on the background will reset all objects to their initial position. The first object cannot be restarted except by re-starting the program which triggers the re-loading of the element.
+点击背景图会重置所有对象的位置。第一个对象无法被重启，除非重启程序，重启程序会重新加载该元素。
 
-::: tip Other ways to control Animations
+::: tip 其它控制动画的方法
 
-Another way to start/stop an animation is to bind a property to the `running` property of an animation. This is especially useful when the user-input is in control of properties:
+另一种启动和停止动画的方法是将一个属性绑定至动画的 `running` 属性。当用户能控制该属性时显得非常有用：
 
 ```qml
 NumberAnimation {
     // [...]
-    // animation runs when mouse is pressed
+    // 鼠标按下时，动画运行
     running: area.pressed
 }
 MouseArea {
@@ -147,85 +147,85 @@ MouseArea {
 ```
 :::
 
-## Easing Curves
+## 缓动曲线
 
-The value change of a property can be controlled by an animation. Easing attributes allow influencing the interpolation curve of a property change. 
+动画可以控制属性值的变化过程。缓和属性能够影响属性变更的曲线。
 
-All animations we have defined by now use a linear interpolation because the initial easing type of an animation is `Easing.Linear`. It’s best visualized with a small plot, where the y-axis is the property to be animated and the x-axis is the time (*duration*). A linear interpolation would draw a straight line from the `from` value at the start of the animation to the `to` value at the end of the animation. So the easing type defines the curve of change. 
+目前我们定义的动画都使用了线性插值，因为动画的缓和属性的初值是 `Easing.Linear`。最好是通过图标看看，y 坐标是被动画的属性，x 坐标是时间(*时长*)。线性插值会在图标的开始位置到结束位置间画出一条直线，起点值为 `from`，终点值为 `to`。缓和类型定义了变化曲线。
 
-Easing types should be carefully chosen to support a natural fit for a moving object. For example, when a page slides out, the page should initially slide out slowly and then gain momentum to finally slide out at high speed, similar to turning the page of a book.
+需要谨慎地为移动对象选择一个合适的缓和类型。例如，当滑出一个页面时，初始的速度应该很慢，然后加速，最后高速滑出，类似翻书。
 
-:::tip Animations should not be overused. 
+:::tip 不应过度使用动画
 
-As with other aspects of UI design, animations should be designed carefully to support the UI flow, not dominate it. The eye is very sensitive to moving objects and animations can easily distract the user.
+与UI设计的其他方面一样，动画应该精心设计以支持 UI 流，而不是主导它。眼睛对移动物体非常敏感，所以动画极容易吸引用户的注意。
 :::
 
-In the next example, we will try some easing curves. Each easing curve is displayed by a clickable image and, when clicked, will set a new easing type on the `square` animation and then trigger a `restart()` to run the animation with the new curve.
+下个例子中，我们会尝试一些缓动曲线。每个缓动曲线由同一个可点击图片展示，当其被点击时，`square` 动画会被设置一个新的缓动曲线，并调用 `restart()` 以新的曲线运行动画。
 
 ![](./assets/automatic/easingcurves.png)
 
-The code for this example was made a little bit more complicated. We first create a grid of `EasingTypes` and a `Box` which is controlled by the easing types. An easing type just displays the curve which the box shall use for its animation. When the user clicks on an easing curve the box moves in a direction according to the easing curve. The animation itself is a standalone animation with the target set to the box and configured for x-property animation with a duration of 2 seconds.
+本例的代码有点复杂。首先创建 `EasingTypes` 的网格和一个 `Box`，后者受缓动曲线控制。每个缓动类型展示了动画将使用的曲线。当用户点击曲线时，盒子会根据该曲线移动。该动画是一个独立动画，目标为盒子，作用于 x 坐标，时长为 2 秒。
 
-::: tip
-The internals of the EasingType renders the curve in real time, and the interested reader can look it up in the `EasingCurves` example.
+::: tip 提示
+EasingType 的内部实时渲染曲线，感兴趣的读者可以在 `EasingCurves` 示例中查找。
 :::
 
 <<< @/docs/ch05-fluid/src/easing/EasingCurves.qml#global
 
-Please play with the example and observe the change of speed during an animation. Some animations feel more natural for the object and some feel irritating.
+请试试该实例并观察动画进行时速度的变化。某些动画令人舒适，某些动画令人难受。
 
-Besides the `duration` and `easing.type`, you are able to fine-tune animations. For example, the general `PropertyAnimation` type (from which most animations inherit) additionally supports `easing.amplitude`, `easing.overshoot`, and `easing.period` properties, which allow you to fine-tune the behavior of particular easing curves. 
+除了 `duration` 和 `easing.type` 外，你还可以微调动画。例如，常见的 `PropertyAnimation` 类型（大部分动画继承自它）还支持 `easing.amplitude`，`easing.overshoot` 和 `easing.period` 属性，这些允许你微调部分动画的行为。
 
-Not all easing curves support these parameters. Please consult the [easing table](http://doc.qt.io/qt-6/qml-qtquick-propertyanimation.html#easing-prop) from the `PropertyAnimation` documentation to check if an easing parameter has an influence on an easing curve.
+不是所有的缓动曲线都支持这些参数。请查询 `PropertyAnimation` 文档的 [easing table](http://doc.qt.io/qt-6/qml-qtquick-propertyanimation.html#easing-prop) ，看看哪些参数对哪些曲线有影响。
 
-::: tip Choose the right Animation
+::: tip 选择正确的曲线
 
-Choosing the right animation for the element in the user interface context is crucial for the outcome. Remember the animation shall support the UI flow; not irritate the user.
+在用户界面中为元素选择正确的动画至关重要。请牢记，动画应该支持 UI 流，而不是激怒用户。
 :::
 
-## Grouped Animations
+## 组合动画
 
-Often animations will be more complex than just animating one property. You might want to run several animations at the same time or one after another or even execute a script between two animations. 
+通常情况下，动画不止作用于一个属性。你可以期望同时运行几个动画，或依次运行动画，或在动画运行间隔执行脚本。
 
-For this, grouped animations can be used. As the name suggests, it’s possible to group animations. Grouping can be done in two ways: parallel or sequential. You can use the `SequentialAnimation` or the `ParallelAnimation` element, which act as animation containers for other animation elements. These grouped animations are animations themselves and can be used exactly as such.
+为此，可以使用组合动画。见名知意，它可以组合动画。有两种组合方式：并行或串行。可以将 `SequentialAnimation` 或 `ParallelAnimation` 作为其它动画的容器。这些分组动画本身就是动画，所以可以这样用。
 
 ![](./assets/groupedanimation.png)
 
-### Parallel animations
+### 并行动画
 
-All direct child animations of a parallel animation run in parallel when started. This allows you to animate different properties at the same time.
+动画启动时，并行动画的直接子动画会并行运行。这使得你可以同时动画不同的属性。
 
 <<< @/docs/ch05-fluid/src/animation/ParallelAnimationExample.qml#global
 
 ![](./assets/parallelanimation_sequence.png)
 
-### Sequential animations
+### 串行动画
 
-A sequential animation runs each child animation in the order in which it is declared: top to bottom.
+串行动画依据从上到下的顺序依次执行每个子动画。
 
 <<< @/docs/ch05-fluid/src/animation/SequentialAnimationExample.qml#global
 
 ![](./assets/sequentialanimation_sequence.png)
 
-### Nested animations
+### 嵌套动画
 
-Grouped animations can also be nested. For example, a sequential animation can have two parallel animations as child animations, and so on. We can visualize this with a soccer ball example. The idea is to throw a ball from left to right and animate its behavior.
+组合动画也可嵌套。比如，串行动画可以有两个并行动画作为子动画。我们可以用一个足球的例子来可视化。想法是把一个球从左扔到右，并动画它的行为。
 
 ![](./assets/soccer_init.png)
 
-To understand the animation we need to dissect it into the integral transformations of the object. We need to remember that animations animate property changes. Here are the different transformations:
+要理解此动画，我们需要将其分解成几个必要的变化。需要牢记动画就是动态修改属性。以下是几种不同的变化：
 
-* An x-translation from left-to-right (`X1`)
+* 从左到右的 x 变化(`X1`)
 
-* A y-translation from bottom to top (`Y1`) followed by a translation from up to down (`Y2`) with some bouncing
+* y 变化，先是从下到上的 `Y1`，再是从上到下的 `Y2`，再加一个弹跳
 
-* A rotation of 360 degrees over the entire duration of the animation (`ROT1`)
+* 整个动画周期的一个 360 度的旋转 `ROT1`
 
-The whole duration of the animation should take three seconds.
+完整的动画耗时 3 秒。
 
 ![](./assets/soccer_plan.png)
 
-We start with an empty item as the root element of the width of 480 and height of 300.
+先创建一个宽为 480，高为 360 的空元素作为根元素。
 
 ```qml
 import QtQuick
@@ -242,25 +242,25 @@ Item {
 }
 ```
 
-We have defined our total animation duration as a reference to better synchronize the animation parts.
+将完整的动画耗时定义为一个引用，便于在动画中同步时长。
 
-The next step is to add the background, which in our case are 2 rectangles with green and blue gradients.
+下一步是添加背景色，分别是绿色和蓝色的渐变矩形。
 
 <<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#background
 
 ![](./assets/soccer_stage1.png)
 
-The upper blue rectangle takes 200 pixels of the height and the lower one is anchored to the bottom of the sky and to the bottom of the root element.
+上面的蓝色天空矩形的高度是 200 像素，下方的矩形的顶部锚定了天空的底部，底部锚定了根元素的底部。
 
-Let’s bring the soccer ball onto the green. The ball is an image, stored under “assets/soccer_ball.png”. For the beginning, we would like to position it in the lower left corner, near the edge.
+让我们在绿色部分添加足球。该足球是一张图片，存储在 “assets/soccer_ball.png”。开始的时候，我们将其放在左下角。
 
 <<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#soccer-ball
 
 ![](./assets/soccer_stage2.png)
 
-The image has a mouse area attached to it. If the ball is clicked, the position of the ball will reset and the animation is restarted.
+该图片附加了一个点击区域。若足球被点击，足球将重置位置并重新开始动画。
 
-Let’s start with a sequential animation for the two y translations first.
+接下来，我们添加两个 y 变化。
 
 ```qml
 SequentialAnimation {
@@ -282,9 +282,9 @@ SequentialAnimation {
 
 ![](./assets/soccer_stage3.png)
 
-This specifies that 40% of the total animation duration is the up animation and 60% the down animation, with each animation running after the other in sequence. The transformations are animated on a linear path but there is no curving currently. Curves will be added later using the easing curves, at the moment we’re concentrating on getting the transformations animated.
+这指定了动画耗时的前 40% 是向上的动画，后 60% 是向下的动画，两个动画依次运行。变化目前是线性的，没有使用缓动曲线，后续我们会为其添加，目前我们只关注动画的运行。
 
-Next, we need to add the x-translation. The x-translation shall run in parallel with the y-translation, so we need to encapsulate the sequence of y-translations into a parallel animation together with the x-translation.
+下一步，我们要添加 x 的变化。x 的变化应与 y 的变化同步，所以，我们需要将 y 的变化和 x 的变化封装到并行动画中。
 
 ```qml
 ParallelAnimation {
@@ -303,7 +303,7 @@ ParallelAnimation {
 
 ![](./assets/soccer_stage4.png)
 
-In the end, we would like the ball to be rotating. For this, we need to add another animation to the parallel animation. We choose `RotationAnimation`, as it’s specialized for rotation.
+最后，我们期望球能转起来。为此，我们需要在并行动画中添加一个新的动画。我们选择 `RotationAnimation`，因为它适用于旋转。
 
 ```qml
 ParallelAnimation {
@@ -323,10 +323,10 @@ ParallelAnimation {
 }
 ```
 
-That’s the whole animation sequence. The one thing that's left is to provide the correct easing curves for the movements of the ball. For the *Y1* animation, we use a `Easing.OutCirc` curve, as this should look more like a circular movement. *Y2* is enhanced using an `Easing.OutBounce` to give the ball its bounce, and the bouncing should happen at the end (try with `Easing.InBounce` and you will see that the bouncing starts right away).
+这就是完整的动画序列。还剩一件事，就是为球提供正确的缓动曲线。对于 *Y1* 动画，我们使用 `Easing.OutCirc` 曲线，因为它应该看起来更像一个圆形运动。*Y2* 使用 `Easing.OutBounce` 来给球一个弹跳，弹跳应该发生在结尾（尝试使用 `Easing.InBounce`，你会看到弹跳开始得很快）。
 
 The *X1* and *ROT1* animation are left as-is, with a linear curve.
 
-Here is the final animation code for your reference:
+以下是完整的动画代码：
 
 <<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#parallel-animation
