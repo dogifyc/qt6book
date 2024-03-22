@@ -1,14 +1,14 @@
-# States and Transitions
+# 状态和变化
 
-Often parts of a user interface can be described in states. A state defines a set of property changes and can be triggered by a certain condition. 
+用户界面的某些部分通常可以用状态描述。状态定义了一个或多个属性值的变化过程，可以由特定的条件触发。
 
-Additionally, these state switches can have a transition attached which defines how these changes should be animated or any additional actions that shall be applied. Actions can also be applied when a state is entered.
+此外，状态切换可以附加变化，变化定义了动画的变化过程或额外执行的动作。动作也可在进入状态时触发。
 
-## States
+## 状态
 
-You define states in QML with the `State` element, which needs to be bound to the `states` array of any item element. 
+QML 中可通过 `State` 元素为任意元素定义状态，其值是 `states` 数组。
 
-A state is identified through a state name, and in its simplest form, consists of a series of property changes on elements. The default state is defined by the initial properties of the element and is named `""` (an empty string).
+状态由名称标识，其最简单的形式由元素的一系列属性修改组成。默认状态由元素的初始属性定义，其名字为 `""`（一个空字符串）。
 
 ```qml
 Item {
@@ -26,10 +26,10 @@ Item {
 }
 ```
 
-A state is changed by assigning a new state name to the `state` property of the element in which the states are defined.
+通过为 `state` 属性赋予一个新的状态名称可以修改状态，这些状态被定义在元素的 `states` 属性中。
 
-::: tip Control states using when
-Another way to control states is using the `when` property of the `State` element. The `when` property can be set to an expression that evaluates to true when the state should be applied.
+::: tip 用 when 控制状态
+另一种控制状态的方式是通过 `State` 元素的 `when` 属性。`shen` 属性可以设置为一个表示式，当其值为 true 时，该状态会被启用。
 :::
 
 ```qml
@@ -49,22 +49,22 @@ Item {
 
 ![](./assets/trafficlight_sketch.png)
 
-For example, a traffic light might have two signaling lights. The upper one signaling stop with a red color and the lower one signaling go with a green color. In this example, both lights should not shine at the same time. Let’s have a look at the state chart diagram.
+比如，红绿灯有两个信号灯。上方的是意味着禁行的红色，下面的是允许通过的绿灯。在此例中，两个灯不能同时亮。让我们看看状态变化图。
 
 ![](./assets/trafficlight_states.png)
 
-When the system is switched on, it automatically goes into the stop mode as the default state. The stop state changes `light1` to red and `light2` to black (off). 
+当启动改系统时，它自动进入默认的 `stop` 状态。停止状态会将 `light1` 改为红色，`light2` 改为黑色。
 
-An external event can now trigger a state switch to the `"go"` state. In the go state, we change the color properties from `light1` to black (off) and `light2` to green to indicate the pedestrians may now cross.
+外部事件能将状态改为 `go`。在启动状态中，`light1` 的颜色改为黑色，`light2` 的颜色改为绿色，允许行人通过。
 
-To realize this scenario we start sketching our user interface for the 2 lights. For simplicity, we use 2 rectangles with the radius set to the half of the width (and the width is the same as the height, which means it’s a square).
+为了更好的理解，我们画了一个包含两个灯的用户界面。为了简单，我们定义了两个矩形，矩形的圆角是宽度的一半（矩形宽和高相同，这意味着着是一个正方形）。
 
 <<< @/docs/ch05-fluid/src/animation/StatesExample.qml#lights
 
-As defined in the state chart we want to have two states: one being the `"go"` state and the other the `"stop"` state, where each of them changes the traffic light's respective color to red or green. We set the `state` property to `stop` to ensure the initial state of our traffic light is the `stop` state.
+如状态图中所示，我们定义了两种状态：`"go"` 状态和 `"stop"` 状态，它们分别将灯的颜色改为绿色或红色。我们将 `state` 属性改为 `stop`，确保交通灯的初始状态是 `stop`。
 
-::: tip Initial state
-We could have achieved the same effect with only a `"go"` state and no explicit `"stop"` state by setting the color of `light1` to red and the color of `light2` to black. The initial state `""` defined by the initial property values would then act as the `"stop"` state.
+::: tip 初始状态
+我们可以只定义一个 `"go"` 状态，通过将 `light` 设置为红色，`light2` 设置为黑色达到隐式设置初始状态的目的。由初始属性定义的状态和 `"stop"` 状态一致。
 :::
 
 <<< @/docs/ch05-fluid/src/animation/StatesExample.qml#states
