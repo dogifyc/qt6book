@@ -6,7 +6,7 @@
 
 简单的变化通过修改 `x,y` 坐标来实现。旋转通过 `rotation` 属性完成。该值的格式的角度（0.. 360）。缩小和放大通过 `scale` 属性完成，其值 <1 意味着缩小，`>1` 意味着放大。旋转和缩放不会修改元素的坐标和大小：`x,y` 和 `width/height` 不会改变，仅修改了绘图指令。
 
-展示例子前，先看看这个：`ClickableImage` 元素。`ClickableImage` 是一个包含鼠标点击区域的图片。这提出了一个有用的经验法则 —— 如果你复制了一段代码三次，将其打包为组件。
+展示例子前，先看看这个：`ClickableImage` 元素。`ClickableImage` 是一个包含鼠标点击区域的图片。一个有用的经验法则 —— 如果一段代码重复出现三次，就将其封装为组件。
 
 <<< @/docs/ch04-qmlstart/src/transformation/ClickableImage.qml#global
 

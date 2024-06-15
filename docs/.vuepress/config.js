@@ -368,7 +368,7 @@ function ch06Sidebar() {
 
 function ch05Sidebar() {
   return {
-    title: "Fluid Elements",
+    title: "流式元素",
     path: '/ch05-fluid/fluid-elements',
     collapsable: false,
     children: [

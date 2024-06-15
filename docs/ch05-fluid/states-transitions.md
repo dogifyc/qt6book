@@ -1,8 +1,8 @@
-# 状态和变化
+# 状态和过渡
 
 用户界面的某些部分通常可以用状态描述。状态定义了一个或多个属性值的变化过程，可以由特定的条件触发。
 
-此外，状态切换可以附加变化，变化定义了动画的变化过程或额外执行的动作。动作也可在进入状态时触发。
+此外，状态切换可以附加过渡，过渡定义了动画的变化过程或额外执行的动作。动作也可在进入状态时触发。
 
 ## 状态
 
@@ -84,7 +84,7 @@ It’s possible to create similar logic using scripting instead of QML states. H
 :::
 
 
-## Transitions
+## 过渡
 
 A series of transitions can be added to every item. A transition is executed by a state change.
 

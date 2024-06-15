@@ -1,6 +1,6 @@
 # 核心元素
 
-元素可被组合成可见或不可见元素。可见元素（如 `Rectangle`）有几何外观，通常在屏幕上占有一个区域。不可见元素（如 `Timer`）提供常见功能，通常用于控制可见元素。
+元素可被分为可见或不可见元素。可见元素（如 `Rectangle`）有几何外观，通常在屏幕上占有一个区域。不可见元素（如 `Timer`）提供常见功能，通常用于控制可见元素。
 
 当前，我们会关注基础元素，如 `Item`， `Rectangle`， `Text`， `Image` 和 `MouseArea`。不过，通过 Qt Quick Controls 2 模块，可以利用标准平台组件（按钮，标签，silders）创建用户界面。
 
@@ -8,9 +8,9 @@
 
 `Item` 是所有可见元素的基础，因为其它所有的可见元素都继承自 `Item`。其本身并未绘制任何东西，但定义所有可见元素需要的属性：
 
-* **Geometry（几何坐标）** - `x` 和 `y` 定义了左上位置，`width` 和 `height` 扩大了元素，`z` 用于提升和降低元素在堆栈中的自然排序。
+* **Geometry（几何坐标）** - `x` 和 `y` 定义了左上位置，`width` 和 `height` 扩大了元素，`z` 用于提升和降低元素在堆栈中的层级。
 * **Layout handling（处理布局）** - `anchors` 锚（left 左，right 右，top 上，bottom 底，vertical 垂直和 horizontal 水平居中）和可选的边距 `margins` 将元素相对其他元素定位。
-* **Key handling（处理按键）** - attached `Key` and `KeyNavigation` properties to control key handling and the `focus` property to enable key handling in the first place.
+* **Key handling（处理按键）** - `Key` 和 `KeyNavigation` 属性处理按键事件，`focus` 属性用于在最开始启用按键处理。
 * **Transformation（变换）** - `scale` 缩放和 `rotate` 旋转变换和常见的可变换 `transform` 属性列表，如 *x,y,z*，还有 `transformOrigin` 点。
 * **Visual（可见性）** - `opacity` 控制透明度，`visible` 控制展示和隐藏元素，`clip` 限制元素边界的绘制操作，而 `smooth` 增强渲染品质。
 * **State definition（状态定义）** - `states` 列表属性包含了支持的状态列表，如当前 `state` 属性，`transitions` 列表属性会状态变更添加动画。

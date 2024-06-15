@@ -15,9 +15,9 @@ Qt 必要模块对启用了 Qt 的平台是必须的。它们提供了使用 Qt 
 * **Qt GUI** - 用于图形用户界面（GUI）的基类。包括 OpenGL。
 * **Qt Network** - 用于简化网络编程的轻量类库。
 * **Qt QML** - 用于 QML 和 JavaScript 语言的类。
-* **Qt Quick** - 一个用于构建动态的用户自定义界面的神明式框架。
+* **Qt Quick** - 一个用于构建动态的用户自定义界面的声明式框架。
 * **Qt Quick Controls** - 提供用于构建高性能桌面，嵌入式和移动设备用户界面的轻量级的 QML 类型。这些类型采用简单的样式结构，非常高效。
-* **Qt Quick Layouts** - 布局用于安排基于 Qt Quick 2的组件在用户界面上的位置。
+* **Qt Quick Layouts** - 布局，控制基于 Qt Quick 2的组件在用户界面上的位置。
 * **Qt Quick Test** - 用于 QML 应用的单元测试框架，其中的测试用例写起来像 JavaScript 函数。
 * **Qt Test** - 用于 Qt 应用单元测试的类。
 * **Qt Widgets** - 继承 C++ 编写的 Qt GUI 组件类。

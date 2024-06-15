@@ -168,7 +168,7 @@ Rectangle {
 
 ## TextEdit
 
-`TextEdit` 与 `TextInput` 十分类似，支持多行文本。它没有文本约束属性，因为着依赖于查询文本内容尺寸（`contentHeight`，`contentWidth`）。我们也创建了名为 `TTextEdit 的自定义组件，为编辑区域提供了背景色，使用了焦点作用域获得更好的焦点转发机制。
+`TextEdit` 与 `TextInput` 十分类似，支持多行文本。它没有文本约束属性，因为着依赖于查询文本内容尺寸（`contentHeight`，`contentWidth`）。我们也创建了名为 `TTextEdit` 的自定义组件，为编辑区域提供了背景色，使用了焦点作用域获得更好的焦点转发机制。
 
 ```qml
 // TTextEdit.qml

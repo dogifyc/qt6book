@@ -1,4 +1,4 @@
-# Introduction to Controls
+# Controls 简介
 
 Using Qt Quick from scratch gives you primitive graphical and interaction elements from which you can build your user interfaces. Using Qt Quick Controls you start from a slightly more structured set of controls to build from. 
 
