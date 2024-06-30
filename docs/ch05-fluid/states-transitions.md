@@ -29,7 +29,7 @@ Item {
 通过为 `state` 属性赋予一个新的状态名称可以修改状态，这些状态被定义在元素的 `states` 属性中。
 
 ::: tip 用 when 控制状态
-另一种控制状态的方式是通过 `State` 元素的 `when` 属性。`shen` 属性可以设置为一个表示式，当其值为 true 时，该状态会被启用。
+另一种控制状态的方式是通过 `State` 元素的 `when` 属性。`when` 属性可以设置为一个表示式，当其值为 true 时，该状态会被启用。
 :::
 
 ```qml
@@ -64,31 +64,31 @@ Item {
 如状态图中所示，我们定义了两种状态：`"go"` 状态和 `"stop"` 状态，它们分别将灯的颜色改为绿色或红色。我们将 `state` 属性改为 `stop`，确保交通灯的初始状态是 `stop`。
 
 ::: tip 初始状态
-我们可以只定义一个 `"go"` 状态，通过将 `light` 设置为红色，`light2` 设置为黑色达到隐式设置初始状态的目的。由初始属性定义的状态和 `"stop"` 状态一致。
+我们可以只定义一个 `"go"` 状态，通过将 `light` 设置为红色，`light2` 设置为黑色达到隐式设置初始状态的目的。由初始属性 `""` 定义的状态将和 `"stop"` 状态一致。
 :::
 
 <<< @/docs/ch05-fluid/src/animation/StatesExample.qml#states
 
-Using `PropertyChanges { target: light2; color: "black" }` is not really required in these examples as the initial color of `light2` is already black. In a state, it’s only necessary to describe how the properties shall change from their default state (and not from the previous state).
+示例中其实不太需要 `PropertyChanges { target: light2; color: "black" }`，因为 `light2` 的初始颜色早就是黑的。对于状态来说，它只需说明属性是如何从默认状态改变的，而不是从上一个状态。
 
-A state change is triggered using a mouse area which covers the whole traffic light and toggles between the go- and stop-state when clicked.
+通过点击覆盖信号灯的 MouseArea 可以切换 "go" 和 "stop" 状态。
 
 <<< @/docs/ch05-fluid/src/animation/StatesExample.qml#interaction
 
 ![](./assets/trafficlight_ui.png)
 
-We are now able to successfully change the state of the traffic lamp. To make the UI more appealing and natural, we should add some transitions with animation effects. A transition can be triggered by a state change.
+现在我们能成功地切换信号的状态。为了让 UI 更加自然和吸引人，我们需要添加一些动画过渡效果。过渡可在状态切换时触发。
 
-::: tip Using scripting
-It’s possible to create similar logic using scripting instead of QML states. However, QML is a better language than JavaScript for describing user interfaces. Where possible, aim to write declarative code instead of imperative code.
+::: tip 使用脚本
+可以通过脚本而不是 QML 状态来实现类似的逻辑。不过，相对 JavaScript 来说，QML 是一门更好的描述用户界面的语言。你应该尽可能地写声明式代码，而不是命令式代码。
 :::
 
 
 ## 过渡
 
-A series of transitions can be added to every item. A transition is executed by a state change.
+每个元素可以应用一堆过渡。过渡可在状态切换时被执行。
 
-You can define on which state change a particular transition can be applied using the `from:` and `to:` properties. These two properties act like a filter: when the filter is true the transition will be applied. You can also use the wildcard “\*”, which means “any state”. 
+你可以通过 `from:` 和 `to:` 属性定义状态变化时应执行哪个过渡。这俩属性的行为类似过滤器：当过滤结果为真时，过渡会被执行。你也可以使用通配符 "\*"，这意味着匹配任何状态。
 
 For example, `from: "*"; to: "*"` means "from any state to any other state", and is the default value for `from` and `to`. This means the transition will be applied to every state switch.
 
