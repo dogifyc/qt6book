@@ -90,23 +90,23 @@ Item {
 
 你可以通过 `from:` 和 `to:` 属性定义状态变化时应执行哪个过渡。这俩属性的行为类似过滤器：当过滤结果为真时，过渡会被执行。你也可以使用通配符 "\*"，这意味着匹配任何状态。
 
-For example, `from: "*"; to: "*"` means "from any state to any other state", and is the default value for `from` and `to`. This means the transition will be applied to every state switch.
+比方说，`from: "*"; to: "*"` 意味着从任意状态到任意状态，且这是 `from` 和 `to` 的默认值。这意味着每次状态切换时都会应用过渡。
 
-For this example, we would like to animate the color changes when switching state from “go” to “stop”. For the other reversed state change (“stop” to “go”) we want to keep an immediate color change and don’t apply a transition. 
+例如，当状态由 "go" 变为 "stop" 时，在颜色改变时，我们希望应用过渡。而反向的状态变化（"stop" 到 "go"）时，我们希望颜色立刻变化，不应用过渡。
 
-We restrict the transition with the `from` and `to` properties to filter only the state change from “go” to “stop”. Inside the transition, we add two color animations for each light, which shall animate the property changes defined in the state description.
+我们通过 `from` 和 `to` 属性限制过渡仅在状态由 "go" 变为 "stop" 时触发。在过渡内部，我们为每个灯添加了两个颜色动画，它们将应用状态定义中定义的属性变化。
 
 <<< @/docs/ch05-fluid/src/animation/StatesExample.qml#transitions
 
-You can change the state though clicking the UI. The state is applied immediately and will also change the state while a transition is running. So, try to click the UI while the state is in the transition from “stop” to “go”. You will see the change will happen immediately.
+可以点击 UI 切换状态。状态会立刻应用，过渡运行期间也能改变状态。可以试试在 "stop" 转变至 "go" 的过渡期间点击界面。你可以看到变化立刻发生。
 
 ![](./assets/trafficlight_transition.png)
 
-You could play around with this UI by, for example, scaling the inactive light down to highlight the active light. 
+你可以玩玩这个 UI，比如，将不活跃的灯缩小，以突出活动灯。
 
-For this, you would need to add another property change for scaling to the states and also handle the animation for the scaling property in the transition. 
+为此，你需要为过渡添加另一个这对缩放属性的变化，处理过渡时 scale 属性的动画。
 
-Another option would be to add an “attention” state where the lights are blinking yellow. For this, you would need to add a sequential animation to the transition for one second going to yellow (“to” property of the animation and one second going to “black”).
+另一个选项是添加一种“注意”状态，此时为闪烁的黄灯。为此，你需要在过渡中添加串行动画，一秒后变为黄色（动画的 "to" 属性，一秒后变为黑色）。
 
-Maybe you would also want to change the easing curve to make it more visually appealing.
+也许你还想改变缓动曲线，使其更具视觉吸引力。
 
