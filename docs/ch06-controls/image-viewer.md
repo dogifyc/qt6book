@@ -1,12 +1,12 @@
-# An Image Viewer
+# Image 查看器
 
-Let’s look at a larger example of how Qt Quick Controls are used. For this, we will create a simple image viewer.
+让我们看看一个更大的关于如何使用 Qt Quick Controls 的例子。为此，我们先创建一个简单的图片查看器。
 
-First, we create it for desktop using the Fusion style, then we will refactor it for a mobile experience before having a look at the final code base.
+首先，我们创建一个 Fusion 风格的桌面应用程序，然后我们将其重构为移动端版本，最后看看最终代码。
 
-## The Desktop Version
+## 桌面版本
 
-The desktop version is based around a classic application window with a menu bar, a tool bar and a document area. The application can be seen in action below.
+桌面版本的软件基于典型的应用窗口，它由一个菜单栏、工具栏和文档区域组成。如下应用程序所示。
 
 ![](./assets/viewer-window.png)
 
